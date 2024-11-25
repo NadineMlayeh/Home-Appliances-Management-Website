@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Liste des Achats</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
+          <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+	    body{
+	    background: url('111.png') no-repeat;
+	        background-size: cover; /* Ensure the image covers the entire body */
+	    background-repeat: no-repeat; /* Prevent the image from repeating */
+	    background-position: center;
+	    }
+        *{
+
+            font-family: "Poppins", sans-serif;
+        }
+        .card-header {
+            background-color: #e9ecef; /* Red background for the card header */
+            color: #000; /* Black text color */
+            text-align: center; /* Center align text */
+            font-weight: bold; /* Make the text bold */
+            font-size: 1.75rem; /* Slightly bigger text */
+            padding: 1rem; /* Add padding */
+            border: 1px solid black;
+        }
+		.card {
+		    background-color: rgba(255, 255, 255, 0.28); /* White background with 50% opacity */
+		}
+
+        .table {
+            background-color: #e9ecef; 
+            border: 1px solid black;/* Grey background for the table container */
+        }
+
+        .table th, .table td {
+            vertical-align: middle; /* Center align text vertically */
+        }
+                .table thead th {
+            border-bottom: 2px solid black; /* Thicker border for table header */
+        }
+                .table tbody td {
+            border-bottom: 1px solid black; /* Thicker border for table rows */
+        }
+        .table th, .table td {
+            border: 1px solid black; /* Thicker border for table cells */
+            vertical-align: middle; /* Center align text vertically */
+        }
+
+        .btn {
+            border-radius: 0.25rem; /* Rounded corners */
+            font-size: 0.875rem; /* Smaller font size */
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border: 1px solid #28a745;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: 1px solid #dc3545;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+            border: 1px solid #ffc107;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+            border-color: #d39e00;
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+            border: 1px solid #17a2b8;
+        }
+
+        .btn-info:hover {
+            background-color: #138496;
+            border-color: #117a8b;
+        }
+
+        .pagination .page-item.active .page-link {
+            background-color: #007bff; /* Active page link background */
+            border-color: #007bff; /* Active page link border */
+            color: #fff; /* Active page link text color */
+        }
+
+        .pagination .page-link {
+            border-radius: 0.25rem; /* Rounded pagination links */
+        }
+        .input{
+        border: 3px solid black;
+        }        
+        .btn-paid {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">Liste des Achats</div>
+            <div class="card-body">
+                <table class="table mt-3">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Client</th>
+                            <th>Article</th>
+                            <th>Date d'Achat</th>
+                            <th>Quantite</th>
+                            <th>Montant</th>
+                            <th>Mode de Paiement</th>
+                            <th colspan="3" class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="achat : ${ListAchats}">
+                            <td th:text="${achat.id}"></td>
+                            <td th:text="${achat.client.nom}"></td>
+                            <td th:text="${achat.article.name}"></td>
+                            <td th:text="${#dates.format(achat.dateAchat, 'dd-MM-yyyy')}"></td>
+                            <td th:text="${achat.quantite}"></td>
+                            <td th:text="${achat.montant}"></td>
+                            <td th:text="${achat.modePayment}"></td>
+                            <td>
+                                <a onclick="return confirm('Etes-vous sur de vouloir supprimer cet achat ?')" class="btn btn-danger" th:href="@{/deleteAchat(id=${achat.id})}">Effacer</a>
+                            </td> 
+                            <td> 
+                                <a class="btn btn-success" th:href="@{/editAchat(id=${achat.id})}">Modifier</a>
+                            </td>                                                     
+                            <td>
+                                <a class="btn btn-warning" th:href="@{/facture/{id}(id=${achat.id})}">Afficher Facture</a>
+                                
+                            </td>
+                    <td>
+                        <span th:if="${achat.montantRestant == 0}" 
+                              class="btn btn-paid">Paid </span>
+                        
+                        <a th:if="${achat.montantRestant > 0}" 
+                           th:href="@{/payment/{id}(id=${achat.id})}" 
+                           class="btn btn-primary">Payer</a>
+                    </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ul class="pagination justify-content-center mt-4">
+                    <li th:each="page, status : ${pages}" class="page-item" th:classappend="${status.index == currentpage ? 'active' : ''}">
+                        <a class="page-link" th:href="@{/ListAchats(page=${status.index}, keyword=${keyword})}" th:text="${status.index}"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

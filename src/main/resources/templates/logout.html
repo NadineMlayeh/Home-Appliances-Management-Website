@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeLeaf.org">
+	<head>
+		<meta charset="ISO-8859-1">
+		<style>
+			body{
+		background-color: black;
+		color: white;
+		}
+		
+		h1 {
+			background : linear-gradient(144deg,#b166e7, #8373f0 50%,#00DDEB);
+			-webkit-background-clip: text; /* This is needed for WebKit browsers like Chrome and Safari */
+    		-webkit-text-fill-color: transparent; /* This is needed for WebKit browsers like Chrome and Safari */
+    		background-clip: text; /* This is for non-WebKit browsers */
+    		color: transparent;
+		}
+		
+		h6{
+			color : linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+		text-decoration: underline;
+		}
+		.button-64 {
+  align-items: center;
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-family: Phantomsans, sans-serif;
+  font-size: 20px;
+  justify-content: center;
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 3px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+  margin-left: 270px;
+}
+
+.button-64:active,
+.button-64:hover {
+  outline: 0;
+}
+
+.button-64 span {
+  background-color: rgb(5, 6, 45);
+  padding: 16px 24px;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+  transition: 300ms;
+}
+
+.button-64:hover span {
+  background: none;
+}
+
+@media (min-width: 768px) {
+  .button-64 {
+    font-size: 24px;
+    min-width: 196px;
+  }
+}
+		
+		</style>
+		<meta charset="ISO-8859-1">
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<title>logout</title>
+		</head>
+		<body>
+		<form method="post" th:action="@{/logout}">
+			<div class="w3-display-middle">
+				<h1 class="w3-jumbo w3-animate-top w3-center"><code>Are you sure you want to log out ?</code></h1>
+				<hr class="w3-border-white w3-animate-left" style="margin:auto;width:50%">
+				<br><br>
+<button class="button-64" role="button" type="submit"><span class="text">Log Out</span></button>
+
+
+				</div>
+			
+	</form>
+</html>

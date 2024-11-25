@@ -1,0 +1,658 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+    <head>
+        <!-- meta data -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+        <!--font-family-->
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        
+        <!-- title of site -->
+        <title>ElectroComfort</title>
+
+        <!-- For favicon png -->
+		<link rel="shortcut icon" type="image/icon" href="assets/logo/logoo.png"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+        <!--font-awesome.min.css-->
+        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+        <!--linear icon css-->
+		<link rel="stylesheet" href="assets/css/linearicons.css">
+
+		<!--animate.css-->
+        <link rel="stylesheet" href="assets/css/animate.css">
+
+		<!--flaticon.css-->
+        <link rel="stylesheet" href="assets/css/flaticon.css">
+
+		<!--slick.css-->
+        <link rel="stylesheet" href="assets/css/slick.css">
+		<link rel="stylesheet" href="assets/css/slick-theme.css">
+		
+        <!--bootstrap.min.css-->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		
+		<!-- bootsnav -->
+		<link rel="stylesheet" href="assets/css/bootsnav.css" >	
+        
+        <!--style.css-->
+        <link rel="stylesheet" href="assets/css/style.css">
+        
+        <!--responsive.css-->
+        <link rel="stylesheet" href="assets/css/responsive.css">
+        
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		
+        <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+	<style>
+		.logo {
+			float: left;
+			margin-top: 18px;
+		}
+	/* Basic Navbar Styling */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.nav-item {
+    position: relative;
+}
+
+/* Dropdown Menu Styling */
+.marques-dropdown {
+    display: none; /* Initially hidden */
+    position: absolute;
+    top: 100%; /* Position below the navbar */
+    left: 0;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 400px; /* Adjust width as needed */
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+    gap: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Show Dropdown on Hover */
+.marques:hover .marques-dropdown {
+    display: grid;
+}
+
+/* Marque Item Styling */
+.marque-item {
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.marque-item img {
+    width: 100px; /* Adjust size as needed */
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+/* Pop-out Effect on Hover */
+.marque-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Ensure the marquee grid is centered below the dropdown */
+.marques-dropdown {
+    transform: translateX(-50%);
+    left: 50%;
+}
+
+	
+		
+		</style>
+
+    </head>
+	
+	<body>
+		<!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+		<!-- top-area Start -->
+		<section class="top-area">
+			<div class="header-area">
+				<!-- Start Navigation -->
+			    <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy"  data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
+
+			        <div class="container">
+
+			            <!-- Start Header Navigation -->
+			            <div class="navbar-header">
+			                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+			                    <i class="fa fa-bars"></i>
+			                </button>
+							<div class="logo">
+								<img src="assets/images/logoo.png" alt="#" style="width: 200px; height: auto;">
+							</div>
+			            </div><!--/.navbar-header-->
+			            <!-- End Header Navigation -->
+
+			            <!-- Collect the nav links, forms, and other content for toggling -->
+			            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
+			                <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+			                    <li class=" scroll active"><a href="">home</a></li>
+			                    <li><a href="/aboutus">a propos</a></li>
+			                    <li class="nav-item marques">
+									<a href="#">Marques</a>
+									<div class="marques-dropdown">
+										<div class="marque-item">
+											<img src="assets/sam.jfif" alt="Samsung">
+										</div>
+										<div class="marque-item">
+											<img src="assets/lg.jfif" alt="LG">
+										</div>
+										<div class="marque-item">
+											<img src="assets/mid.jfif" alt="Another Marque">
+										</div>
+										<div class="marque-item">
+											<img src="assets/news.png" alt="Samsung">
+										</div>
+										<div class="marque-item">
+											<img src="assets/saba.jpg" alt="LG">
+										</div>
+										<div class="marque-item">
+											<img src="assets/mont.png" alt="Another Marque">
+										</div>
+										<!-- Add more marque items as needed -->
+									</div>
+								</li>
+			                    <li class="scroll"><a href="#list-topics">nos produits</a></li>
+			                    <li><a href="/contact">contact</a></li>
+			                </ul><!--/.nav -->
+			            </div><!-- /.navbar-collapse -->
+			        </div><!--/.container-->
+			    </nav><!--/nav-->
+			    <!-- End Navigation -->
+			</div><!--/.header-area-->
+		    <div class="clearfix"></div>
+
+		</section><!-- /.top-area-->
+		<!-- top-area End -->
+
+		<!--welcome-hero start -->
+		<section id="home" class="welcome-hero">
+			<div class="container">
+				<div class="welcome-hero-txt">
+					<h2>Electro Comfort : Votre destination pour des appareils électroménagers  <br>modernes </h2>
+					<p>
+						Confort et innovation à portée de main pour équiper votre maison avec style.
+					</p>
+				</div>
+
+			</div>
+
+		</section><!--/.welcome-hero-->
+		<!--welcome-hero end -->
+
+		<!--list-topics start -->
+		<section id="list-topics" class="list-topics">
+			<div class="container">
+				<div class="list-topics-content">
+					<ul>
+						<li>
+							<div class="single-list-topics-content">
+								<div class="single-list-topics-icon">
+									<img src="assets/fridge.png" alt="Fridge Icon" style="width: 30px; height: auto;">
+
+								</div>
+								<h2><a href="#">Réfrigérateurs</a></h2>
+								<p>+150 articles</p>
+							</div>
+						</li>
+						<li>
+							<div class="single-list-topics-content">
+								<div class="single-list-topics-icon">
+									<img src="assets/stove.png" alt="Fridge Icon" style="width: 30px; height: auto;">
+								</div>
+								<h2><a href="#">Fours</a></h2>
+								<p>+214 articles</p>
+							</div>
+						</li>
+						<li>
+							<div class="single-list-topics-content">
+								<div class="single-list-topics-icon">
+									<img src="assets/clim.png" alt="Fridge Icon" style="width: 30px; height: auto;">
+								</div>
+								<h2><a href="#">Climatiseurs</a></h2>
+								<p>+185 articles</p>
+							</div>
+						</li>
+						<li>
+							<div class="single-list-topics-content">
+								<div class="single-list-topics-icon">
+									<img src="assets/monitor.png" alt="Fridge Icon" style="width: 30px; height: auto;">
+								</div>
+								<h2><a href="#">Télévisions</a></h2>
+								<p>+200 articles</p>
+							</div>
+						</li>
+						<li>
+							<div class="single-list-topics-content">
+								<div class="single-list-topics-icon">
+									<img src="assets/washing.png" alt="Fridge Icon" style="width: 30px; height: auto;">
+								</div>
+								<h2><a href="#">Lave-linge</a></h2>
+								<p>+120 articles</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div><!--/.container-->
+
+		</section><!--/.list-topics-->
+		<!--list-topics end-->
+
+		<!--works start -->
+		<section id="works" class="works">
+			<div class="container">
+				<div class="section-header">
+					<h2>Categories</h2>
+					<p>ElectroComfort met à votre disposition une variété des produits haut de gamme</p><br><br>
+				</div><!--/.section-header-->
+				<div class="works-content">
+					<div class="row">
+						<div class="col-md-4 col-sm-6">
+							<div class="single-how-works" style="
+							background-image: url('assets/tvv.jpg');
+							background-size: cover;							
+							background-position: center;
+							background-repeat: no-repeat;">
+							<h2>Tv & Climatisation</h2>
+							<p>
+								<a href="#" style="color: white; display: block; text-align: left;"><b>. </b>Televisions</a>
+								<a href="#" style="color: white; display: block; text-align: left;"><b>. </b>climatiseurs</a>
+								<a href="#" style="color: white; display: block; text-align: left;"><b>. </b>climatiseurs ON/OFF</a>
+								<span style="color: transparent; display: block; text-align: left;">....</span>
+							</p>
+
+						</div>
+						
+						</div>
+						<div class="col-md-4 col-sm-6">
+							<div class="single-how-works" style="
+							background-image: url('assets/bb.png');
+							background-size: cover;
+							background-position: center;
+							
+							background-repeat: no-repeat;">
+							<h2>Gros Electromenager</h2>
+							<p>
+								<a href="#" style="color: white; display: block; text-align: left;"><b>. </b>Réfrigérateurs</a>
+								<a href="#" style="color: white; display: block; text-align: left;"><b>. </b>Congélateurs</a>
+								<a href="#" style="color: white; display: block; text-align: left;"><b>. </b>Lave vaisselle</a>
+								<a href="#" style="color: white; display: block; text-align: left;"><b>. </b>Micro-ondes</a>
+							</p>
+							
+
+						</div>
+						
+						</div>
+						
+						<div class="col-md-4 col-sm-6">
+							<div class="single-how-works" style="
+							background-image: url('assets/pop.png');
+							
+							background-size: cover;
+							background-position: center;
+							background-repeat: no-repeat;">
+							<h2>Cuisine & Encastrable</h2>
+							<p>
+								<a href="#" style="color: white; display: block; text-align: left;"><b>. </b>Articles de cuisine</a>
+								<a href="#" style="color: white; display: block; text-align: left;"><b>. </b>Fours Encastrables</a>
+								<a href="#" style="color: white; display: block; text-align: left;"><b>. </b>Plaques de cuisson</a>
+								<a href="#" style="color: white; display: block; text-align: left;"><b>. </b>Hottes</a>
+							</p>
+
+						</div>
+						
+						</div>
+					</div>
+				</div>
+			</div><!--/.container-->
+		
+		</section><!--/.works-->
+		<!--works end -->
+
+		<!--reviews start -->
+		<section id="reviews" class="reviews">
+			<div class="section-header">
+				<h2>Avis des clients</h2>
+				<p>Ce que nos clients pensent de nous</p>
+			</div><!--/.section-header-->
+			<div class="reviews-content">
+				<div class="testimonial-carousel">
+				    <div class="single-testimonial-box">
+						<div class="testimonial-description">
+							<div class="testimonial-info">
+								<div class="testimonial-img">
+									<img src="assets/images/clients/c1.png" alt="clients">
+								</div><!--/.testimonial-img-->
+								<div class="testimonial-person">
+									<h2>Ahmed</h2>
+									<h4>Monastir</h4>
+									<div class="testimonial-person-star">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									</div>
+								</div><!--/.testimonial-person-->
+							</div><!--/.testimonial-info-->
+							<div class="testimonial-comment">
+								<p>
+									Je suis ravie de mon achat chez eux. Les appareils sont d'une qualité exceptionnelle, et je suis impressionnée par leur durabilité. Je recommande vivement cette entreprise pour vos besoins en électroménager.
+								</p>
+							</div><!--/.testimonial-comment-->
+						</div><!--/.testimonial-description-->
+					</div><!--/.single-testimonial-box-->
+				    <div class="single-testimonial-box">
+						<div class="testimonial-description">
+							<div class="testimonial-info">
+								<div class="testimonial-img">
+									<img src="assets/images/clients/c2.png" alt="clients">
+								</div><!--/.testimonial-img-->
+								<div class="testimonial-person">
+									<h2>Samir</h2>
+									<h4>Sousse</h4>
+									<div class="testimonial-person-star">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									</div>
+								</div><!--/.testimonial-person-->
+							</div><!--/.testimonial-info-->
+							<div class="testimonial-comment">
+								<p>
+									"Les produits que j'ai achetés sont robustes et performants. Le service client est également excellent. Une très bonne expérience, je n'hésiterai pas à revenir pour mes futurs achats."
+								</p>
+							</div><!--/.testimonial-comment-->
+						</div><!--/.testimonial-description-->
+					</div><!--/.single-testimonial-box-->
+				    <div class="single-testimonial-box">
+						<div class="testimonial-description">
+							<div class="testimonial-info">
+								<div class="testimonial-img">
+									<img src="assets/images/clients/c3.png" alt="clients">
+								</div><!--/.testimonial-img-->
+								<div class="testimonial-person">
+									<h2>Oussama</h2>
+									<h4>Gabes</h4>
+									<div class="testimonial-person-star">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									</div>
+								</div><!--/.testimonial-person-->
+							</div><!--/.testimonial-info-->
+							<div class="testimonial-comment">
+								<p>
+									"Les électroménagers sont non seulement de haute qualité, mais aussi esthétiquement beaux. Je suis très satisfaite de mon lave-vaisselle et de mon réfrigérateur, ils fonctionnent parfaitement depuis des mois."
+								</p>
+							</div><!--/.testimonial-comment-->
+						</div><!--/.testimonial-description-->
+					</div><!--/.single-testimonial-box-->
+				    <div class="single-testimonial-box">
+						<div class="testimonial-description">
+							<div class="testimonial-info">
+								<div class="testimonial-img">
+									<img src="assets/images/clients/c4.png" alt="clients">
+								</div><!--/.testimonial-img-->
+								<div class="testimonial-person">
+									<h2>Zied</h2>
+									<h4>Mahdia</h4>
+									<div class="testimonial-person-star">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									</div>
+								</div><!--/.testimonial-person-->
+							</div><!--/.testimonial-info-->
+							<div class="testimonial-comment">
+								<p>
+									"J'ai trouvé exactement ce que je cherchais. Les appareils sont fiables et résistants. J'apprécie particulièrement la rapidité de livraison et l'efficacité du service après-vente."
+								</p>
+							</div><!--/.testimonial-comment-->
+						</div><!--/.testimonial-description-->
+					</div><!--/.single-testimonial-box-->
+				    <div class="single-testimonial-box">
+						<div class="testimonial-description">
+							<div class="testimonial-info">
+								<div class="testimonial-img">
+									<img src="assets/images/clients/c1.png" alt="clients">
+								</div><!--/.testimonial-img-->
+								<div class="testimonial-person">
+									<h2>Tarek</h2>
+									<h4>Tatawine</h4>
+									<div class="testimonial-person-star">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									</div>
+								</div><!--/.testimonial-person-->
+							</div><!--/.testimonial-info-->
+							<div class="testimonial-comment">
+								<p>
+									"J'ai acheté plusieurs appareils et je suis vraiment impressionnée par leur qualité. Ils sont solides et très efficaces. Je recommande cette entreprise à tous ceux qui recherchent des produits durables."
+								</p>
+							</div><!--/.testimonial-comment-->
+						</div><!--/.testimonial-description-->
+					</div><!--/.single-testimonial-box-->
+				    <div class="single-testimonial-box">
+						<div class="testimonial-description">
+							<div class="testimonial-info">
+								<div class="testimonial-img">
+									<img src="assets/images/clients/c2.png" alt="clients">
+								</div><!--/.testimonial-img-->
+								<div class="testimonial-person">
+									<h2>Adel</h2>
+									<h4>Bizerte</h4>
+									<div class="testimonial-person-star">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									</div>
+								</div><!--/.testimonial-person-->
+							</div><!--/.testimonial-info-->
+							<div class="testimonial-comment">
+								<p>
+									"Les produits sont à la hauteur de mes attentes, voire plus. Leur qualité est remarquable et ils sont faits pour durer. Un excellent choix pour quiconque cherche des électroménagers fiables."
+								</p>
+							</div><!--/.testimonial-comment-->
+						</div><!--/.testimonial-description-->
+					</div><!--/.single-testimonial-box-->
+				    
+				</div>
+			</div>
+
+		</section><!--/.reviews-->
+		<!--reviews end -->
+
+		<!-- statistics strat -->
+		<section id="statistics"  class="statistics">
+			<div class="container">
+				<div class="statistics-counter"> 
+					<div class="col-md-3 col-sm-6">
+						<div class="single-ststistics-box">
+							<div class="statistics-content">
+								<div class="counter">1000 </div> <span>+</span>
+							</div><!--/.statistics-content-->
+							<h3>Articles</h3>
+						</div><!--/.single-ststistics-box-->
+					</div><!--/.col-->
+					<div class="col-md-3 col-sm-6">
+						<div class="single-ststistics-box">
+							<div class="statistics-content">
+								<div class="counter">20</div> <span>+</span>
+							</div><!--/.statistics-content-->
+							<h3>Categories</h3>
+						</div><!--/.single-ststistics-box-->
+					</div><!--/.col-->
+					<div class="col-md-3 col-sm-6">
+						<div class="single-ststistics-box">
+							<div class="statistics-content">
+								<div class="counter">5000</div> <span>+</span>
+							</div><!--/.statistics-content-->
+							<h3>visiteurs</h3>
+						</div><!--/.single-ststistics-box-->
+					</div><!--/.col-->
+					<div class="col-md-3 col-sm-6">
+						<div class="single-ststistics-box">
+							<div class="statistics-content">
+								<div class="counter">2</div> <span>+</span>
+							</div><!--/.statistics-content-->
+							<h3>ans de guarantie</h3>
+						</div><!--/.single-ststistics-box-->
+					</div><!--/.col-->
+				</div><!--/.statistics-counter-->	
+			</div><!--/.container-->
+
+		</section><!--/.counter-->	
+		<!-- statistics end -->
+
+		<!--blog start -->
+		<section id="blog" class="blog" >
+			<div class="container">
+				<div class="section-header">
+					<h2>Nouveaux produits récemment ajoutés</h2>
+					<p>Découvrez les nouveautés du ElectroComfort </p>
+				</div><!--/.section-header-->
+				<div class="blog-content">
+					<div class="row">
+						<div class="col-md-4 col-sm-6">
+							<div class="single-blog-item">
+								<div class="single-blog-item-img">
+									<img src="assets/2p.jpg" alt="blog image">
+								</div>
+								<div class="single-blog-item-txt">
+									<h2><a href="#">Réfrigérateur Deux portes SABA</a></h2>
+									<h4> mars 2024</h4>
+									<p>
+										robuste et de qualitee remarquable .Sa technologie avancée assure un refroidissement optimal tout en garantissant une longue durée de vie.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6">
+							<div class="single-blog-item">
+								<div class="single-blog-item-img">
+									<img src="assets/micro.jpg" alt="blog image">
+								</div>
+								<div class="single-blog-item-txt">
+									<h2><a href="#">Micro-ondes MIDEA</a></h2>
+									<h4>Janvier 2020</h4>
+									<p>
+									 performant pour chauffer, décongeler, et cuire rapidement . Design compact, idéal pour toute cuisine moderne<spam style="color:white">...................................................</spam>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6">
+							<div class="single-blog-item">
+								<div class="single-blog-item-img">
+									<img src="assets/cli.jpg" alt="blog image">
+								</div>
+								<div class="single-blog-item-txt">
+									<h2><a href="#">Climatiseur TCL Chaud/Froid</a></h2>
+									<h4>Fevrier 2023</h4>
+									<p>
+									   puissant et durable, conçu pour offrir un refroidissement rapide et efficace. Prix raisonnable avec de 3 ans de guarantie .<spam style="color:white">...................................................</spam>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!--/.container-->
+			
+		</section><!--/.blog-->
+		<!--blog end -->
+
+		<!--footer start-->
+		<footer id="footer"  class="footer">
+			<div class="container">
+
+				<div class="hm-footer-copyright">
+					<div class="row"><div>contactez nous : </div>
+						<div class="col-sm-7">
+							<div class="footer-social">
+								<span><i class="fa fa-phone"> +(216)98 288 549</i></span>
+								<a href="#"><i class="fa fa-facebook"></i></a>	
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="#"><i class="fa fa-linkedin"></i></a>
+								<a href="#"><i class="fa fa-google-plus"></i></a>
+							</div>
+						</div>
+					</div>
+					
+				</div><!--/.hm-footer-copyright-->
+			</div><!--/.container-->
+
+			<div id="scroll-Top">
+				<div class="return-to-top">
+					<i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title="" data-original-title="Back to Top" aria-hidden="true"></i>
+				</div>
+				
+			</div><!--/.scroll-Top-->
+			
+        </footer><!--/.footer-->
+		<!--footer end-->
+		
+		<!-- Include all js compiled plugins (below), or include individual files as needed -->
+
+		<script src="assets/js/jquery.js"></script>
+        
+        <!--modernizr.min.js-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+		
+		<!--bootstrap.min.js-->
+        <script src="assets/js/bootstrap.min.js"></script>
+		
+		<!-- bootsnav js -->
+		<script src="assets/js/bootsnav.js"></script>
+
+        <!--feather.min.js-->
+        <script  src="assets/js/feather.min.js"></script>
+
+        <!-- counter js -->
+		<script src="assets/js/jquery.counterup.min.js"></script>
+		<script src="assets/js/waypoints.min.js"></script>
+
+        <!--slick.min.js-->
+        <script src="assets/js/slick.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+		     
+        <!--Custom JS-->
+        <script src="assets/js/custom.js"></script>
+        
+    </body>
+	
+</html>

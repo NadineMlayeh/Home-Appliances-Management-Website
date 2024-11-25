@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Details du facture</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .facture-container {
+            margin-top: 50px;
+        }
+        .facture-header {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px;
+            border-radius: 5px 5px 0 0;
+        }
+        .facture-body {
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 0 0 5px 5px;
+        }
+        .facture-footer {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-top: 1px solid #dee2e6;
+            text-align: right;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .facture-table th, .facture-table td {
+            border: 1px solid #dee2e6;
+            padding: 8px;
+            text-align: center;
+        }
+        .facture-table th {
+            background-color: #e9ecef;
+        }
+        .facture-client, .facture-details {
+            margin-bottom: 20px;
+        }
+                        .table thead th {
+            border-bottom: 2px solid black; /* Thicker border for table header */
+        }
+                .table tbody td {
+            border-bottom: 1px solid black; /* Thicker border for table rows */
+        }
+        .table th, .table td {
+            border: 1px solid black; /* Thicker border for table cells */
+            vertical-align: middle; /* Center align text vertically */
+        }
+        .custom-shadow {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* Stronger custom shadow */
+}
+    </style>
+</head>
+<body>
+    <div class="container facture-container">
+        <div class="custom-shadow">
+            <div class="card-header facture-header">
+                <h2 class="mb-1"><b>Details facture</b></h2>
+            </div>
+            <div class="card-body facture-body">
+                <div class="row">
+                    <div class="col-md-6 facture-client">
+                        <h5><b><u>Details Client :</u></b></h5>
+                        <p><strong>Nom:</strong> <span th:text="${achat.client.nom}"></span></p>
+                        <p><strong>Adresse:</strong> <span th:text="${achat.client.adresse}"></span></p>
+                        <p><strong>Numero de Telephone:</strong> <span th:text="${achat.client.numTelephone}"></span></p>
+                    </div>
+                    <div class="col-md-6 facture-details">
+                        <h5><b><u>Details Facture :</u></b></h5>
+                        <p><strong>ID:</strong> <span th:text="${achat.id}"></span></p>
+                        <p><strong>Date Achat:</strong> <span th:text="${achat.dateAchat}"></span></p>
+                    </div>
+                </div>
+                <table class="table facture-table mt-4">
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>Quantite</th>
+                            <th>Prix Unitaire</th>
+                            <th>Montant</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td th:text="${achat.article.name}"></td>
+                            <td th:text="${achat.quantite}"></td>
+                            <td th:text="${achat.article.prixVente}"></td>
+                            <td th:text="${achat.montant}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="facture-footer">
+                    <h4><b>Total: </b><span th:text="${achat.montant}"></span> Dinars </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

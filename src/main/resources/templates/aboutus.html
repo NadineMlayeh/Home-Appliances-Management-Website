@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/icofont/1.0.1/css/icofont.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        /* Reset some default styles */
+        *{
+
+        }
+        body, h1, h2, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Basic styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;background-image: url("back2.PNG");
+        }
+
+        /* Header styling */
+/* Header styling */
+header {
+    background: black;
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+    border: 4px solid;
+    border-image: linear-gradient(to right, #1e90ff, #00bfff);
+    border-image-slice: 1;
+    box-shadow: 0 0 15px rgba(30, 144, 255, 0.7), 0 0 25px rgba(30, 144, 255, 0.5);
+    border-radius: 10px;
+    margin: 2rem auto;
+    max-width: 80%;
+}
+
+
+        header h1 {
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+        }
+
+        /* General section styling */
+        .team-member {
+            padding: 2rem;
+            background: #fff;
+            margin: 1rem 0;
+        }
+
+        .team-member h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .team-member p {
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Mission section styling */
+        .mission {
+            background: #eee;
+        }
+
+        /* Footer styling */
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        /* Team section styling */
+        .team {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .team-member {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 2px solid #cccccc; /* Gray border */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            padding: 1.5rem;
+            margin: 1rem;
+            width: 30%;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .team-member img {
+            width: 100%;
+            border-radius: 50%;
+            max-width: 150px;
+            margin-bottom: 1rem;
+        }
+
+        .team-member h2 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .team-member p {
+            color: #666;
+        }
+
+        .team-member:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.3); /* Increased shadow on hover */
+            border-color: black; /* Lighter border on hover */
+        }
+        .bread-list {
+        list-style: none; /* Remove default list styling */
+        padding: 0;
+        margin: 0;
+        display: flex; /* Align items in a row */
+        justify-content: left; /* Center the breadcrumb */
+        align-items: left; /* Vertically center items */
+        font-family: Arial, sans-serif; /* Set a clean, modern font */
+    }
+
+    .bread-list li {
+        color: white; /* Set text color to white */
+        margin: 0 10px; /* Space out the breadcrumb items */
+        font-size: 16px; /* Adjust the font size */
+    }
+
+    .bread-list li a {
+        color: white; /* Ensure links are white */
+        text-decoration: none; /* Remove underline from links */
+        transition: color 0.3s ease; /* Smooth color transition */
+    }
+
+    .bread-list li a:hover {
+        color: #00BFFF; /* Change link color on hover to a cooler blue */
+    }
+
+    .bread-list li i {
+        font-size: 18px; /* Slightly larger arrow icon */
+        margin: 0 5px; /* Space the arrow a bit more */
+    }
+
+    .bread-list li.active {
+        font-weight: bold; /* Bold the active item */
+    }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>A propos</h1>
+        <p>Qui sommes nous ?</p>
+        <ul class="bread-list">
+            <li><a href="/home">Home</a></li>
+            <li>
+                <span style="display: inline-block; transform: rotate(-45deg); border: solid white; border-width: 0 2px 2px 0; padding: 3px;"></span>
+            </li>
+            <li class="active">A propos</li>
+        </ul>
+        
+    </header>
+
+
+    <section class="team">
+        <section class="team-member">
+            <img src="hist.PNG" alt="Team Member 1">
+            <h2>Histoire</h2>
+            <p>Depuis sa création, Electro Comfort a évolué pour devenir un acteur clé dans le domaine des appareils électroménagers. Nous avons commencé avec une vision claire : offrir des produits de qualité qui améliorent la vie quotidienne de nos clients. Au fil des années, nous avons su nous adapter aux évolutions du marché et aux besoins de nos consommateurs, tout en restant fidèles à notre engagement pour l'innovation et l'excellence..</p>
+        </section>
+        <section class="team-member">
+            <img src="mission.jpg" alt="Team Member 1">
+            <h2>Mission</h2>
+            <p>Chez Electro Comfort, notre mission est d'améliorer la vie quotidienne de nos clients en offrant des appareils électroménagers de haute qualité et fiables. Nous nous engageons à fournir des produits innovants qui allient technologie de pointe et design convivial, pour rendre les tâches ménagères plus simples et plus confortables. En mettant l'accent sur la satisfaction client et un service exceptionnel, nous aspirons à être votre partenaire de confiance pour un foyer plus intelligent et agréable..</p>
+        </section>
+        <section class="team-member">
+            <img src="vision.PNG" alt="Team Member 1">
+            <h2>Vision</h2>
+            <p>Notre vision chez Electro Comfort est de devenir un leader dans le domaine des appareils électroménagers, en établissant de nouveaux standards d'excellence. Nous souhaitons révolutionner l'expérience des foyers en proposant des produits qui allient technologie avancée et pratiques durables. Nous voulons être reconnus pour notre innovation, notre fiabilité et notre service client supérieur, et contribuer ainsi à un monde plus efficace et confortable.</p>
+        </section>
+    </section>
+    <section class="team">
+        <section class="team-member">
+            <img src="values.jpg" alt="Team Member 1">
+            <h2>Valeurs</h2>
+            <p>Chez Electro Comfort, nous valorisons profondément l'innovation, la qualité, la satisfaction client, la durabilité et l'intégrité. Nous nous engageons à offrir des produits innovants qui intègrent les dernières avancées technologiques tout en garantissant une qualité supérieure. Notre priorité est de dépasser les attentes de nos clients grâce à un service personnalisé et attentif. Nous adoptons des pratiques respectueuses de l'environnement pour promouvoir une consommation durable et réduire notre empreinte écologique. Enfin, nous agissons avec transparence et honnêteté dans toutes nos interactions, établissant des relations de confiance solides avec nos clients et partenaires..</p>
+        </section>
+
+        <section class="team-member">
+            <img src="cert.jpg" alt="Team Member 1">
+            <h2>Certifications</h2>
+            <p>Electro Comfort est fier de ses diverses certifications qui témoignent de notre engagement envers la qualité et l'excellence. Ces accréditations, obtenues grâce à nos processus rigoureux et à notre conformité aux normes industrielles, assurent à nos clients des produits fiables et performants. Elles reflètent notre dévouement à maintenir les plus hauts standards dans tous les aspects de notre entreprise.</p>
+        </section>
+    </section>
+    <footer>
+        <p>&copy; 2024 ElectroComfort. All rights reserved.</p>
+    </footer>
+</body>
+</html>
