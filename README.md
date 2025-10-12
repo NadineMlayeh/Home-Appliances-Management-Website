@@ -106,7 +106,7 @@ Clients can:
 
 ## 👩‍💻 Credits
 
-- Developed by **[Your Name]**  
+- Developed by **Nadine Mlayeh**  
 - Full-stack project demonstrating secure login, admin management, and interactive client features  
 
 ---
