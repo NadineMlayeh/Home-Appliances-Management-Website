@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -16,9 +17,36 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         @SuppressWarnings("removal")
-		LogoutConfigurer<HttpSecurity> permitAll = http
+        LogoutConfigurer<HttpSecurity> permitAll = http
             .authorizeRequests()
-            .requestMatchers("/", "/home", "/login", "/css/**", "/js/**", "/images/**", "/assets/**").permitAll() // Allow access to static resources
+            .requestMatchers(
+                "/",
+                "/home",
+                "/login",
+                "/aboutus",
+                "/contact",
+                "/ListArticles",
+                "/css/**",
+                "/js/**",
+                "/images/**",
+                "/img/**",
+                "/assets/**",
+                "/assets/images/**",
+                "/assets/img/**",
+                "/fonts/**",
+                "/webjars/**",
+                "/mail/**",
+                "/logo/**",
+                "/favicon.ico"
+            ).permitAll() // Allow access to static resources and public pages
+                .requestMatchers(
+                    new AntPathRequestMatcher("/**/*.png", null, false),
+                    new AntPathRequestMatcher("/**/*.jpg", null, false),
+                    new AntPathRequestMatcher("/**/*.jpeg", null, false),
+                    new AntPathRequestMatcher("/**/*.gif", null, false),
+                    new AntPathRequestMatcher("/**/*.jfif", null, false),
+                    new AntPathRequestMatcher("/**/*.css", null, false)
+                ).permitAll() // Static images/css anywhere (case-insensitive); avoids the PathPattern error on "/**/*.ext"
                 .requestMatchers("/admin/**", "/addArticle", "/addAchat", "/addClient").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()

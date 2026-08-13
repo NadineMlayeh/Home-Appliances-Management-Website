@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="adminheadernav(activePage)" id="adminheader">
+    <div class="admin-inner">
+        <a class="admin-logo" th:href="@{/admin}">
+            <img src="/assets/images/logoo.png" alt="ElectroComfort">
+        </a>
+
+        <nav>
+            <ul class="admin-nav">
+                <li th:classappend="${activePage == 'dashboard'} ? 'active' : ''">
+                    <a th:href="@{/admin}" title="Tableau de bord"><i class="fas fa-tachometer-alt"></i><span>Tableau de bord</span></a>
+                </li>
+                <li th:classappend="${activePage == 'clients'} ? 'active' : ''">
+                    <a href="#" title="Clients"><i class="fas fa-users"></i><span>Clients</span><i class="fas fa-caret-down admin-caret"></i></a>
+                    <ul class="admin-submenu">
+                        <li><a th:href="@{/ListClients}">Liste des clients</a></li>
+                        <li><a th:href="@{/addClient}">Ajouter client</a></li>
+                    </ul>
+                </li>
+                <li th:classappend="${activePage == 'articles'} ? 'active' : ''">
+                    <a href="#" title="Articles"><i class="fas fa-box"></i><span>Articles</span><i class="fas fa-caret-down admin-caret"></i></a>
+                    <ul class="admin-submenu">
+                        <li><a th:href="@{/ListArticles}">Liste des articles</a></li>
+                        <li><a th:href="@{/addArticle}">Ajouter article</a></li>
+                    </ul>
+                </li>
+                <li th:classappend="${activePage == 'achats'} ? 'active' : ''">
+                    <a href="#" title="Ventes"><i class="fas fa-shopping-cart"></i><span>Ventes</span><i class="fas fa-caret-down admin-caret"></i></a>
+                    <ul class="admin-submenu">
+                        <li><a th:href="@{/ListAchats}">Liste des ventes</a></li>
+                        <li><a th:href="@{/addAchat}">Ajouter vente</a></li>
+                    </ul>
+                </li>
+                <li th:classappend="${activePage == 'messages'} ? 'active' : ''">
+                    <a th:href="@{/messages}" title="Messages"><i class="fas fa-envelope"></i><span>Messages</span></a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="admin-right">
+            <th:block th:if="${unreadCount != null}">
+                <div class="admin-bell notification-badge">
+                    <a href="#" id="notificationIcon" title="Notifications"><i class="fas fa-bell"></i></a>
+                    <span class="badge" th:text="${unreadCount}" th:classappend="${unreadCount == 0} ? 'hidden' : ''"></span>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <ul>
+                            <li th:each="notification : ${notifications}">
+                                <a th:href="@{${notification.article != null} ? '/addqte?articleId=' + ${notification.article.id} : '#'}"
+                                   th:text="${notification.message}"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </th:block>
+            <a class="admin-logout" th:href="@{/logout}" title="Deconnexion"><i class="fas fa-sign-out-alt"></i><span>Deconnexion</span></a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

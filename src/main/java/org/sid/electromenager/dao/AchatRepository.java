@@ -9,4 +9,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface AchatRepository extends JpaRepository<Achat, Long>{
 	Page<Achat> findByClient(Client client, Pageable pageable);
+	Page<Achat> findByModePayment(String modePayment, Pageable pageable);
 }

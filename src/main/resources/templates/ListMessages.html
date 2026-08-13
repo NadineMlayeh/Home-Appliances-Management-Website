@@ -1,90 +1,268 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
-    <title>Liste des messages</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/admin-header.css">
+    <title>Liste des avis</title>
     <style>
-			body {
-			    font-family: "Poppins", sans-serif;
-			    background-color: rgba(145, 141, 141, 0.847);;
-			    margin: 0;
-			    padding: 20px;
-			}
-
-        .header {
-            background-color: #000;
-            color: #fff;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            box-shadow: 
-		        0 0 15px rgba(33, 150, 243, 0.9), /* Blue glow */
-		        0 0 30px rgba(33, 150, 243, 0.7), 
-		        0 0 45px rgba(33, 150, 243, 0.5); /* Blue glow */
-            margin-bottom: 20px;
-        }
-        .header img {
-            max-height: 50px;
-            margin-right: 20px;
-        }
-        h1 {
-            font-size: 2em;
+        * {
             margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Poppins", sans-serif;
+            background: -webkit-linear-gradient(135deg, #eef2f7 0%, #e1e8f1 100%);
+            background: -moz-linear-gradient(135deg, #eef2f7 0%, #e1e8f1 100%);
+            background: linear-gradient(135deg, #eef2f7 0%, #e1e8f1 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+        .messages-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 96px 20px 40px;
+        }
+        .messages-card {
+            background: #ffffff;
+            border-radius: 14px;
+            -webkit-box-shadow: 0 12px 32px rgba(31, 45, 61, 0.14);
+            box-shadow: 0 12px 32px rgba(31, 45, 61, 0.14);
+            overflow: hidden;
+        }
+        .messages-header {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            padding: 26px 30px;
+            background: -webkit-linear-gradient(135deg, #1A76D1 0%, #0f5bab 100%);
+            background: -moz-linear-gradient(135deg, #1A76D1 0%, #0f5bab 100%);
+            background: linear-gradient(135deg, #1A76D1 0%, #0f5bab 100%);
+        }
+        .messages-heading {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            gap: 16px;
+        }
+        .messages-header .icon-circle {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.18);
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+        .messages-header .icon-circle i {
+            color: #fff;
+            font-size: 24px;
+        }
+        .messages-header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.2;
+        }
+        .messages-header p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.85);
+            margin-top: 4px;
+        }
+        .count-pill {
+            display: inline-block;
+            padding: 8px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1A76D1;
+            background: #fff;
+            border-radius: 30px;
+            -webkit-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+            white-space: nowrap;
+        }
+        .table-wrap {
+            overflow-x: auto;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         }
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-        th, td {
-            padding: 12px;
+        thead th {
+            background: #f4f7fb;
+            color: #52637a;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
             text-align: left;
+            padding: 14px 22px;
+            border-bottom: 1px solid #e6ecf3;
         }
-        th {
-            background-color: #2196F3; /* Light blue */
-            color: white;
+        tbody td {
+            padding: 16px 22px;
+            border-bottom: 1px solid #eef2f7;
+            font-size: 14px;
+            color: #33404f;
+            vertical-align: middle;
         }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
+        tbody tr:last-child td {
+            border-bottom: none;
         }
-        tr:hover {
-            background-color: #ddd;
+        tbody tr {
+            -webkit-transition: background-color 0.2s ease;
+            -moz-transition: background-color 0.2s ease;
+            transition: background-color 0.2s ease;
         }
-        tr:nth-child(odd) {
-            background-color: #e3f2fd; /* Very light blue for odd rows */
+        tbody tr:hover {
+            background-color: #f4f8fd;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #fafcff;
+        }
+        tbody tr:nth-child(even):hover {
+            background-color: #f4f8fd;
+        }
+        .visitor-cell {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            gap: 12px;
+        }
+        .avatar {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: -webkit-linear-gradient(135deg, #4aa3f0 0%, #1A76D1 100%);
+            background: -moz-linear-gradient(135deg, #4aa3f0 0%, #1A76D1 100%);
+            background: linear-gradient(135deg, #4aa3f0 0%, #1A76D1 100%);
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+        }
+        .name {
+            font-weight: 500;
+            color: #24303e;
+        }
+        .email {
+            color: #1A76D1;
+            text-decoration: none;
+            -webkit-transition: color 0.2s ease;
+            -moz-transition: color 0.2s ease;
+            transition: color 0.2s ease;
+        }
+        .email:hover {
+            color: #0f5bab;
+            text-decoration: underline;
+        }
+        .message-cell {
+            color: #4b5a6d;
+            max-width: 380px;
+            line-height: 1.5;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #8b9bb0;
+        }
+        .empty-state i {
+            font-size: 48px;
+            margin-bottom: 14px;
+            color: #c5d3e3;
+        }
+        @media (max-width: 640px) {
+            .messages-container {
+                padding-top: 80px;
+            }
+            .messages-header {
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                -webkit-box-align: start;
+                -ms-flex-align: start;
+                align-items: flex-start;
+                gap: 14px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Liste des avis</h1>
+    <div th:replace="~{fragments/adminheader :: adminheadernav('messages')}"></div>
+    <div class="messages-container">
+        <div class="messages-card">
+            <div class="messages-header">
+                <div class="messages-heading">
+                    <div class="icon-circle"><i class="fas fa-envelope-open-text"></i></div>
+                    <div>
+                        <h1>Liste des avis</h1>
+                        <p>Messages recus par les visiteurs du site</p>
+                    </div>
+                </div>
+                <span class="count-pill"><i class="fas fa-comments" aria-hidden="true"></i> <span th:text="${notes != null ? notes.size() : 0}">0</span> message(s)</span>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Visiteur</th>
+                            <th>Email</th>
+                            <th>Message</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="note : ${notes}">
+                            <td>
+                                <div class="visitor-cell">
+                                    <span class="avatar" th:text="${note.nom != null && !note.nom.isEmpty() ? note.nom.substring(0, 1).toUpperCase() : '?'}">?</span>
+                                    <span class="name" th:text="${note.nom}">Nom</span>
+                                </div>
+                            </td>
+                            <td><a class="email" th:href="'mailto:' + ${note.email}" th:text="${note.email}">email@exemple.com</a></td>
+                            <td class="message-cell" th:text="${note.message}">Message</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="empty-state" th:if="${notes == null || notes.isEmpty()}">
+                    <i class="fas fa-inbox"></i>
+                    <p>Aucun message recu pour le moment.</p>
+                </div>
+            </div>
+        </div>
     </div>
-    <table>
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Email</th>
-                <th>Message</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Loop through the notes in the model and display them -->
-            <tr th:each="note : ${notes}">
-                <td th:text="${note.nom}"></td>
-                <td th:text="${note.email}"></td>
-                <td th:text="${note.message}"></td>
-            </tr>
-        </tbody>
-    </table>
 </body>
 </html>

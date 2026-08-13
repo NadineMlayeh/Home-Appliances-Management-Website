@@ -1,61 +1,113 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Payment</title>
+    <title>Paiement</title>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/admin-header.css">
     <style>
 		body {
-		    background-color: #D3D3D3;
+		    background-color: #eef2f7;
+		    font-family: "Poppins", sans-serif;
 		}
-
-
 	    *{
             font-family: "Poppins", sans-serif;
         }
 
-        .container {
+        .payment-wrapper {
+            max-width: 620px;
+            margin: 90px auto 40px;
+            padding: 0 15px;
+        }
+
+        .payment-card {
             background-color: #fff;
-            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(15, 44, 89, 0.14);
+            border: none;
+            overflow: hidden;
+        }
+
+        .payment-header {
+            background: linear-gradient(135deg, #2b3a4a, #1f2b38);
+            color: #fff;
+            padding: 22px 26px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .payment-header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        .payment-header .icon-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: #cfe0f0;
+        }
+        .payment-body {
+            padding: 26px;
+        }
+
+        .info-card {
+            background-color: #f8fafc;
+            border: 1px solid #e6ebf1;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 18px;
+        }
+        .info-card p {
+            margin-bottom: 8px;
+            font-size: 0.98rem;
+            color: #3d4d61;
+        }
+        .info-card p:last-child {
+            margin-bottom: 0;
+        }
+        .info-card b {
+            color: #2b3a4a;
+        }
+        .info-card .montant-restant {
+            color: #c0392b;
+            font-weight: 700;
+        }
+        .montant-input {
+            border: 1px solid #ced4da;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Stronger shadow */
-            max-width: 600px;
-            margin-top: 50px;
-            border: 1px solid black;
-            
+            padding: 6px 10px;
+            max-width: 160px;
         }
 
-        h1 {
-            color: #343a40;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-align: center;
+        .tranche-block {
+            background-color: #f8fafc;
+            border: 1px solid #e6ebf1;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 12px;
         }
-
-        p {
-            font-size: 1.1em;
-            color: #007bff ;
+        .tranche-block label {
+            font-weight: 700;
+            color: #2b3a4a;
+            font-size: 0.98rem;
         }
-        span{
-        	color: black;
-        }
-
-
-        .form-group label {
-            font-weight: bold;
-            color: black;
-        }
-
-        .form-group span {
-            font-size: 1.1em;
-            color: green;
+        .tranche-block .valeur {
+            color: #2f6fe0;
+            font-weight: 600;
         }
 
         .btn {
             margin-top: 10px;
-            font-size: 1.1em;
-            padding: 10px 20px;
-            border-radius: 5px;
+            font-size: 1.05em;
+            padding: 9px 22px;
+            border-radius: 9px;
+            font-weight: 600;
         }
 
         .btn-success {
@@ -65,19 +117,26 @@
 
         .btn-success:disabled {
             background-color: #218838;
+            opacity: 0.8;
         }
 
         .btn-secondary {
-            background-color: #6c757d;
+            background-color: #e2e6ea;
+            color: #343a40;
             border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: #d3d9df;
         }
 
         .btn-warning {
             background-color: #ffc107;
             border: none;
-            margin-top: 20px;
+            margin-top: 12px;
             width: 100%;
-            font-size: 1.2em;
+            font-size: 1.15em;
+            padding: 12px;
         }
 
         .btn-warning:hover {
@@ -89,144 +148,156 @@
         }
         .full-width-button {
             width: 100%;
-            margin-bottom: 10px; /* Add some space between buttons */
+            margin-bottom: 4px;
+        }
+        .isolated-section {
+            border-top: 2px solid #e6ebf1;
+            padding-top: 18px;
+            margin-top: 8px;
         }
     </style>
 </head>
 <body>
+<div th:replace="~{fragments/adminheader :: adminheadernav('achats')}"></div>
 <form action="#" th:action="@{/savePayment}" th:object="${achat}" method="post">
     <input type="hidden" name="achatId" th:value="${achat.id}" />
-    <div class="container mt-5">
-        <h1>Payment</h1>
-        <p><b>Client  :  </b><span th:text="${achat.client.nom}"></span></p>
-        <p><b>Mode de paiement  :  </b><span th:text="${achat.modePayment}"></span></p>
-        <p><b>Montant Restant  :  </b><input id="montantRestant" name="montantRestant" th:value="${achat.montantRestant}" /></p>
+    <div class="payment-wrapper">
+        <div class="payment-card">
+            <div class="payment-header">
+                <div class="icon-circle"><i class="fas fa-credit-card"></i></div>
+                <h1>Paiement</h1>
+            </div>
+            <div class="payment-body">
+                <div class="info-card">
+                    <p><b>Client :</b> <span th:text="${achat.client.nom}"></span></p>
+                    <p><b>Mode de paiement :</b> <span th:text="${achat.modePayment == 'comptant'} ? 'Comptant' : 'Facilite'"></span></p>
+                    <p><b>Montant restant :</b> <input id="montantRestant" name="montantRestant" class="montant-input montant-restant" th:value="${achat.montantRestant}" /></p>
+                </div>
 
-        <div th:if="${achat.modePayment == 'facilite'}">
-            <div th:if="${achat.avance != null}" class="form-group">
-                <label>Avance : <span th:text="${achat.avanceH}"></span></label><br>
-                <button id="avance-button" type="button" class="btn"
-                        th:classappend="${achat.avance == 0} ? 'btn-success' : 'btn-secondary'"
-                        th:onclick="'handleClick(\'avance\', ' + ${achat.avance} + ')'"
-                        th:disabled="${achat.avance == 0}"
-                        th:text="${achat.avance == 0} ? 'Paid' : 'Payer'"></button>
-                <input type="hidden" id="avance" name="avance" th:value="${achat.avance}"/>
+                <div th:if="${achat.modePayment == 'facilite'}">
+                    <div th:if="${achat.avance != null}" class="form-group tranche-block">
+                        <label>Avance : <span class="valeur" th:text="${achat.avanceH}"></span></label><br>
+                        <button id="avance-button" type="button" class="btn"
+                                th:classappend="${achat.avance == 0} ? 'btn-success' : 'btn-secondary'"
+                                th:onclick="'handleClick(\'avance\', ' + ${achat.avance} + ')'"
+                                th:disabled="${achat.avance == 0}"
+                                th:text="${achat.avance == 0} ? 'Paye' : 'Payer'"></button>
+                        <input type="hidden" id="avance" name="avance" th:value="${achat.avance}"/>
+                    </div>
+                    <div th:if="${achat.tr1 != null}" class="form-group tranche-block">
+                        <label>Tranche 1 : <span class="valeur" th:text="${achat.tr1H}"></span></label><br>
+                        <button id="tr1-button" type="button" class="btn full-width-button"
+                                th:classappend="${achat.tr1 == 0} ? 'btn-success' : 'btn-secondary'"
+                                th:onclick="'handleClick(\'tr1\', ' + ${achat.tr1} + ')'"
+                                th:disabled="${achat.tr1 == 0}"
+                                th:text="${achat.tr1 == 0} ? 'Paye' : 'Payer'"></button>
+                        <input type="hidden" id="tr1" name="tr1" th:value="${achat.tr1}"/>
+                    </div>
+                    <div th:if="${achat.tr2 != null}" class="form-group tranche-block">
+                        <label>Tranche 2 : <span class="valeur" th:text="${achat.tr2H}"></span></label><br>
+                        <button id="tr2-button" type="button" class="btn full-width-button"
+                                th:classappend="${achat.tr2 == 0} ? 'btn-success' : 'btn-secondary'"
+                                th:onclick="'handleClick(\'tr2\', ' + ${achat.tr2} + ')'"
+                                th:disabled="${achat.tr2 == 0}"
+                                th:text="${achat.tr2 == 0} ? 'Paye' : 'Payer'"></button>
+                        <input type="hidden" id="tr2" name="tr2" th:value="${achat.tr2}"/>
+                    </div>
+                    <div th:if="${achat.tr3 != null}" class="form-group tranche-block">
+                        <label>Tranche 3 : <span class="valeur" th:text="${achat.tr3H}"></span></label><br>
+                        <button id="tr3-button" type="button" class="btn full-width-button"
+                                th:classappend="${achat.tr3 == 0} ? 'btn-success' : 'btn-secondary'"
+                                th:onclick="'handleClick(\'tr3\', ' + ${achat.tr3} + ')'"
+                                th:disabled="${achat.tr3 == 0}"
+                                th:text="${achat.tr3 == 0} ? 'Paye' : 'Payer'"></button>
+                        <input type="hidden" id="tr3" name="tr3" th:value="${achat.tr3}"/>
+                    </div>
+                    <div th:if="${achat.tr4 != null}" class="form-group tranche-block">
+                        <label>Tranche 4 : <span class="valeur" th:text="${achat.tr4H}"></span></label><br>
+                        <button id="tr4-button" type="button" class="btn full-width-button"
+                                th:classappend="${achat.tr4 == 0} ? 'btn-success' : 'btn-secondary'"
+                                th:onclick="'handleClick(\'tr4\', ' + ${achat.tr4} + ')'"
+                                th:disabled="${achat.tr4 == 0}"
+                                th:text="${achat.tr4 == 0} ? 'Paye' : 'Payer'"></button>
+                        <input type="hidden" id="tr4" name="tr4" th:value="${achat.tr4}"/>
+                    </div>
+                    <div th:if="${achat.tr5 != null}" class="form-group tranche-block">
+                        <label>Tranche 5 : <span class="valeur" th:text="${achat.tr5H}"></span></label><br>
+                        <button id="tr5-button" type="button" class="btn full-width-button"
+                                th:classappend="${achat.tr5 == 0} ? 'btn-success' : 'btn-secondary'"
+                                th:onclick="'handleClick(\'tr5\', ' + ${achat.tr5} + ')'"
+                                th:disabled="${achat.tr5 == 0}"
+                                th:text="${achat.tr5 == 0} ? 'Paye' : 'Payer'"></button>
+                        <input type="hidden" id="tr5" name="tr5" th:value="${achat.tr5}"/>
+                    </div>
+                    <div th:if="${achat.tr6 != null}" class="form-group tranche-block">
+                        <label>Tranche 6 : <span class="valeur" th:text="${achat.tr6H}"></span></label><br>
+                        <button id="tr6-button" type="button" class="btn full-width-button"
+                                th:classappend="${achat.tr6 == 0} ? 'btn-success' : 'btn-secondary'"
+                                th:onclick="'handleClick(\'tr6\', ' + ${achat.tr6} + ')'"
+                                th:disabled="${achat.tr6 == 0}"
+                                th:text="${achat.tr6 == 0} ? 'Paye' : 'Payer'"></button>
+                        <input type="hidden" id="tr6" name="tr6" th:value="${achat.tr6}"/>
+                    </div>
+                    <div th:if="${achat.tr7 != null}" class="form-group tranche-block">
+                        <label>Tranche 7 : <span class="valeur" th:text="${achat.tr7H}"></span></label><br>
+                        <button id="tr7-button" type="button" class="btn full-width-button"
+                                th:classappend="${achat.tr7 == 0} ? 'btn-success' : 'btn-secondary'"
+                                th:onclick="'handleClick(\'tr7\', ' + ${achat.tr7} + ')'"
+                                th:disabled="${achat.tr7 == 0}"
+                                th:text="${achat.tr7 == 0} ? 'Paye' : 'Payer'"></button>
+                        <input type="hidden" id="tr7" name="tr7" th:value="${achat.tr7}"/>
+                    </div>
+                    <div th:if="${achat.tr8 != null}" class="form-group tranche-block">
+                        <label>Tranche 8 : <span class="valeur" th:text="${achat.tr8H}"></span></label><br>
+                        <button id="tr8-button" type="button" class="btn full-width-button"
+                                th:classappend="${achat.tr8 == 0} ? 'btn-success' : 'btn-secondary'"
+                                th:onclick="'handleClick(\'tr8\', ' + ${achat.tr8} + ')'"
+                                th:disabled="${achat.tr8 == 0}"
+                                th:text="${achat.tr8 == 0} ? 'Paye' : 'Payer'"></button>
+                        <input type="hidden" id="tr8" name="tr8" th:value="${achat.tr8}"/>
+                    </div>
+                    <div th:if="${achat.tr9 != null}" class="form-group tranche-block">
+                        <label>Tranche 9 : <span class="valeur" th:text="${achat.tr9H}"></span></label><br>
+                        <button id="tr9-button" type="button" class="btn full-width-button"
+                                th:classappend="${achat.tr9 == 0} ? 'btn-success' : 'btn-secondary'"
+                                th:onclick="'handleClick(\'tr9\', ' + ${achat.tr9} + ')'"
+                                th:disabled="${achat.tr9 == 0}"
+                                th:text="${achat.tr9 == 0} ? 'Paye' : 'Payer'"></button>
+                        <input type="hidden" id="tr9" name="tr9" th:value="${achat.tr9}"/>
+                    </div>
+                    <div th:if="${achat.tr10 != null}" class="form-group tranche-block">
+                        <label>Tranche 10 : <span class="valeur" th:text="${achat.tr10H}"></span></label><br>
+                        <button id="tr10-button" type="button" class="btn full-width-button"
+                                th:classappend="${achat.tr10 == 0} ? 'btn-success' : 'btn-secondary'"
+                                th:onclick="'handleClick(\'tr10\', ' + ${achat.tr10} + ')'"
+                                th:disabled="${achat.tr10 == 0}"
+                                th:text="${achat.tr10 == 0} ? 'Paye' : 'Payer'"></button>
+                        <input type="hidden" id="tr10" name="tr10" th:value="${achat.tr10}"/><br>
+                    </div>
+                </div>
+                <div th:if="${achat.modePayment == 'comptant'}" class="isolated-section">
+                    <button id="ct-button" type="button" class="btn btn-secondary full-width-button"
+                            onclick="payComptant()"
+                            th:disabled="${achat.montantRestant == 0}"
+                            th:text="${achat.montantRestant == 0} ? 'Paye' : 'Confirmer le paiement'"></button>
+                </div>
+                <button type="submit" class="btn btn-warning"><i class="fas fa-check-circle"></i> Enregistrer</button>
             </div>
-            <div th:if="${achat.tr1 != null}" class="form-group">
-                <label>Tranche 1 : <span th:text="${achat.tr1H}"></span></label><br>
-                <button id="tr1-button" type="button" class="btn full-width-button"
-                        th:classappend="${achat.tr1 == 0} ? 'btn-success' : 'btn-secondary'"
-                        th:onclick="'handleClick(\'tr1\', ' + ${achat.tr1} + ')'"
-                        th:disabled="${achat.tr1 == 0}"
-                        th:text="${achat.tr1 == 0} ? 'Paid' : 'Payer'"></button>
-                <input type="hidden" id="tr1" name="tr1" th:value="${achat.tr1}"/>
-            </div>
-            <div th:if="${achat.tr2 != null}" class="form-group">
-                <label>Tranche 2 : <span th:text="${achat.tr2H}"></span></label><br>
-                <button id="tr2-button" type="button" class="btn full-width-button"
-                        th:classappend="${achat.tr2 == 0} ? 'btn-success' : 'btn-secondary'"
-                        th:onclick="'handleClick(\'tr2\', ' + ${achat.tr2} + ')'"
-                        th:disabled="${achat.tr2 == 0}"
-                        th:text="${achat.tr2 == 0} ? 'Paid' : 'Payer'"></button>
-                <input type="hidden" id="tr2" name="tr2" th:value="${achat.tr2}"/>
-            </div>
-            <div th:if="${achat.tr3 != null}" class="form-group">
-                <label>Tranche 3 : <span th:text="${achat.tr3H}"></span></label><br>
-                <button id="tr3-button" type="button" class="btn full-width-button"
-                        th:classappend="${achat.tr3 == 0} ? 'btn-success' : 'btn-secondary'"
-                        th:onclick="'handleClick(\'tr3\', ' + ${achat.tr3} + ')'"
-                        th:disabled="${achat.tr3 == 0}"
-                        th:text="${achat.tr3 == 0} ? 'Paid' : 'Payer'"></button>
-                <input type="hidden" id="tr3" name="tr3" th:value="${achat.tr3}"/>
-            </div>
-            <div th:if="${achat.tr4 != null}" class="form-group">
-                <label>Tranche 4 : <span th:text="${achat.tr4H}"></span></label><br>
-                <button id="tr4-button" type="button" class="btn full-width-button"
-                        th:classappend="${achat.tr4 == 0} ? 'btn-success' : 'btn-secondary'"
-                        th:onclick="'handleClick(\'tr4\', ' + ${achat.tr4} + ')'"
-                        th:disabled="${achat.tr4 == 0}"
-                        th:text="${achat.tr4 == 0} ? 'Paid' : 'Payer'"></button>
-                <input type="hidden" id="tr4" name="tr4" th:value="${achat.tr4}"/>
-            </div>
-            <div th:if="${achat.tr5 != null}" class="form-group">
-                <label>Tranche 5 : <span th:text="${achat.tr5H}"></span></label><br>
-                <button id="tr5-button" type="button" class="btn full-width-button"
-                        th:classappend="${achat.tr5 == 0} ? 'btn-success' : 'btn-secondary'"
-                        th:onclick="'handleClick(\'tr5\', ' + ${achat.tr5} + ')'"
-                        th:disabled="${achat.tr5 == 0}"
-                        th:text="${achat.tr5 == 0} ? 'Paid' : 'Payer'"></button>
-                <input type="hidden" id="tr5" name="tr5" th:value="${achat.tr5}"/>
-            </div>
-            <div th:if="${achat.tr6 != null}" class="form-group">
-                <label>Tranche 6 : <span th:text="${achat.tr6H}"></span></label><br>
-                <button id="tr6-button" type="button" class="btn full-width-button"
-                        th:classappend="${achat.tr6 == 0} ? 'btn-success' : 'btn-secondary'"
-                        th:onclick="'handleClick(\'tr6\', ' + ${achat.tr6} + ')'"
-                        th:disabled="${achat.tr6 == 0}"
-                        th:text="${achat.tr6 == 0} ? 'Paid' : 'Payer'"></button>
-                <input type="hidden" id="tr6" name="tr6" th:value="${achat.tr6}"/>
-            </div>
-            <div th:if="${achat.tr7 != null}" class="form-group">
-                <label>Tranche 7 : <span th:text="${achat.tr7H}"></span></label><br>
-                <button id="tr7-button" type="button" class="btn full-width-button"
-                        th:classappend="${achat.tr7 == 0} ? 'btn-success' : 'btn-secondary'"
-                        th:onclick="'handleClick(\'tr7\', ' + ${achat.tr7} + ')'"
-                        th:disabled="${achat.tr7 == 0}"
-                        th:text="${achat.tr7 == 0} ? 'Paid' : 'Payer'"></button>
-                <input type="hidden" id="tr7" name="tr7" th:value="${achat.tr7}"/>
-            </div>
-            <div th:if="${achat.tr8 != null}" class="form-group">
-                <label>Tranche 8 : <span th:text="${achat.tr8H}"></span></label><br>
-                <button id="tr8-button" type="button" class="btn full-width-button"
-                        th:classappend="${achat.tr8 == 0} ? 'btn-success' : 'btn-secondary'"
-                        th:onclick="'handleClick(\'tr8\', ' + ${achat.tr8} + ')'"
-                        th:disabled="${achat.tr8 == 0}"
-                        th:text="${achat.tr8 == 0} ? 'Paid' : 'Payer'"></button>
-                <input type="hidden" id="tr8" name="tr8" th:value="${achat.tr8}"/>
-            </div>
-            <div th:if="${achat.tr9 != null}" class="form-group">
-                <label>Tranche 9 : <span th:text="${achat.tr9H}"></span></label><br>
-                <button id="tr9-button" type="button" class="btn full-width-button"
-                        th:classappend="${achat.tr9 == 0} ? 'btn-success' : 'btn-secondary'"
-                        th:onclick="'handleClick(\'tr9\', ' + ${achat.tr9} + ')'"
-                        th:disabled="${achat.tr9 == 0}"
-                        th:text="${achat.tr9 == 0} ? 'Paid' : 'Payer'"></button>
-                <input type="hidden" id="tr9" name="tr9" th:value="${achat.tr9}"/>
-            </div>
-            <div th:if="${achat.tr10 != null}" class="form-group">
-                <label>Tranche 10 : <span th:text="${achat.tr10H}"></span></label><br>
-                <button id="tr10-button" type="button" class="btn full-width-button"
-                        th:classappend="${achat.tr10 == 0} ? 'btn-success' : 'btn-secondary'"
-                        th:onclick="'handleClick(\'tr10\', ' + ${achat.tr10} + ')'"
-                        th:disabled="${achat.tr10 == 0}"
-                        th:text="${achat.tr10 == 0} ? 'Paid' : 'Payer'"></button>
-                <input type="hidden" id="tr10" name="tr10" th:value="${achat.tr10}"/><br>    
-            </div>     
         </div>
-        <div th:if="${achat.modePayment == 'comptant'}">
-                        <button id="ct-button" type="button" class="btn btn-secondary"
-                        onclick="payComptant()"
-                        th:disabled="${achat.tr10 == 0}"
-                        th:text="Pay"></button>
-        </div><br>
-       <button type="submit" class="btn btn-warning">Save</button>
     </div>
 </form>
 
 <script>
     function handleClick(trancheId, trancheValue) {
-        if (confirm('Are you sure you want to mark this tranche as paid?')) {
-            // Update the tranche value to 0
+        if (confirm('Etes-vous sur de vouloir marquer cette tranche comme payee ?')) {
             document.getElementById(trancheId).value = 0;
 
-            // Disable the button and update its text
             const button = document.getElementById(trancheId + '-button');
             button.disabled = true;
-            button.textContent = 'Paid';
+            button.textContent = 'Paye';
             button.classList.remove('btn-secondary');
             button.classList.add('btn-success');
 
-            // Update the montantRestant value
             const montantRestantElement = document.getElementById('montantRestant');
             let montantRestant = parseFloat(montantRestantElement.value);
             montantRestant -= trancheValue;
@@ -235,13 +306,12 @@
     }
     function payComptant()
     {
-    	
         const button = document.getElementById('ct-button');
         button.disabled = true;
-        button.textContent = 'Paid';
+        button.textContent = 'Paye';
         button.classList.remove('btn-secondary');
         button.classList.add('btn-success');
-        
+
         const montantRestantElement = document.getElementById('montantRestant');
         let montantRestant = parseFloat(montantRestantElement.value);
         montantRestant -= montantRestant;

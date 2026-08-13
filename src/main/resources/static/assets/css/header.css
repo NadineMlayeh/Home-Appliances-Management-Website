@@ -1,0 +1,248 @@
+/* ============================================================
+   Shared site header (used by home / about us / contact)
+   Self-contained: does not depend on bootstrap or bootsnav,
+   everything is scoped under #siteheader so it cannot clash
+   with the rest of the page (bootstrap v3 / v4 / medipro css).
+   ============================================================ */
+#siteheader {
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+    z-index: 999;
+}
+#siteheader:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+#siteheader .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#siteheader .navbar {
+    position: relative;
+    display: block; /* keep the classic block (v3) layout even on pages using bootstrap v4 */
+    min-height: auto;
+    margin-bottom: 0;
+    padding: 0; /* bootstrap v4 adds .5rem 1rem; we manage our own spacing */
+}
+/* Bootstrap v4 turns .navbar > .container into a flex container (display:flex;
+   flex-wrap:wrap) and gives .navbar-collapse flex-basis:100%, which forces the
+   nav links onto a second row. Force container + collapse back to block so the
+   header renders as one row, exactly like on the about Us page. */
+#siteheader .navbar > .container,
+#siteheader .navbar > .container > .navbar-collapse {
+    display: block !important;
+    float: none;
+    width: 100%;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+}
+
+/* ---------- brand / logo ---------- */
+#siteheader .navbar-header {
+    float: left;
+}
+#siteheader .logo {
+    float: left;
+    margin-top: 18px;
+}
+#siteheader .logo img {
+    display: block;
+    max-width: 200px;
+    height: auto;
+}
+
+/* ---------- nav links ---------- */
+#siteheader .navbar-collapse {
+    display: block !important;
+    visibility: visible;
+}
+#siteheader .navbar-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: block; /* neutralise bootstrap v4 flex nav */
+    float: right;
+}
+#siteheader .navbar-nav > li {
+    position: relative;
+    float: left;
+}
+#siteheader .navbar-nav > li > a {
+    position: relative;
+    display: inline-block;
+    padding: 34px 21px;
+    color: #000;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+    -webkit-transition: color 0.3s linear;
+    -moz-transition: color 0.3s linear;
+    -o-transition: color 0.3s linear;
+    transition: color 0.3s linear;
+}
+#siteheader .navbar-nav > li > a:before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 10px;
+    left: 0;
+    background-color: #1A76D1;
+    -webkit-transition: width 0.3s ease-in-out;
+    -moz-transition: width 0.3s ease-in-out;
+    -o-transition: width 0.3s ease-in-out;
+    transition: width 0.3s ease-in-out;
+}
+#siteheader .navbar-nav > li > a:hover,
+#siteheader .navbar-nav > li > a:focus {
+    color: #1A76D1;
+}
+#siteheader .navbar-nav > li > a:hover:before,
+#siteheader .navbar-nav > li > a:focus:before {
+    width: 100%;
+}
+#siteheader .navbar-nav > li.active > a {
+    color: #1A76D1;
+}
+#siteheader .navbar-nav > li.active > a:before {
+    width: 100%;
+}
+
+/* ---------- "Marques" hover dropdown ---------- */
+#siteheader .nav-item {
+    position: relative;
+}
+#siteheader .marques-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 400px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    -webkit-transition: transform 0.3s ease-in-out;
+    -moz-transition: transform 0.3s ease-in-out;
+    -o-transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+}
+#siteheader .marques:hover .marques-dropdown {
+    display: grid;
+}
+#siteheader .marque-item {
+    text-align: center;
+    -webkit-transition: transform 0.3s ease;
+    -moz-transition: transform 0.3s ease;
+    -o-transition: transform 0.3s ease;
+    transition: transform 0.3s ease;
+}
+#siteheader .marque-item img {
+    width: 100px;
+    height: auto;
+    -webkit-transition: transform 0.3s ease;
+    -moz-transition: transform 0.3s ease;
+    -o-transition: transform 0.3s ease;
+    transition: transform 0.3s ease;
+}
+#siteheader .marque-item:hover img {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+/* ---------- mobile toggle (hamburger) ---------- */
+#siteheader .navbar-toggle {
+    position: relative;
+    float: right;
+    margin-top: 12px;
+    margin-right: 15px;
+    margin-bottom: 8px;
+    padding: 10px;
+    background-color: transparent;
+    border: 1px solid #ff545a;
+    border-radius: 4px;
+    cursor: pointer;
+    display: none;
+}
+#siteheader .navbar-toggle i {
+    color: #ff545a;
+    font-size: 16px;
+}
+
+/* ---------- sticky header after scrolling ---------- */
+#siteheader nav.navbar.bootsnav.sticked {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+}
+
+/* ---------- responsive (mobile) ---------- */
+@media (max-width: 767px) {
+    #siteheader .navbar-toggle {
+        display: inline-block;
+    }
+    #siteheader .navbar-header {
+        width: 100%;
+    }
+    #siteheader .navbar-collapse {
+        display: none !important;
+        width: 100%;
+        clear: both;
+        visibility: visible;
+    }
+    #siteheader .navbar-collapse.in {
+        display: block !important;
+    }
+    #siteheader .navbar-nav {
+        float: none;
+        width: 100%;
+    }
+    #siteheader .navbar-nav > li {
+        float: none;
+        width: 100%;
+    }
+    #siteheader .navbar-nav > li > a {
+        display: block;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+    }
+    #siteheader .navbar-nav > li > a:before {
+        bottom: 4px;
+    }
+    #siteheader .logo {
+        margin-top: 14px;
+    }
+    #siteheader .marques-dropdown {
+        position: static;
+        left: 0;
+        -webkit-transform: none;
+        -ms-transform: none;
+        transform: none;
+        width: 100%;
+        box-shadow: none;
+        padding: 10px 0;
+    }
+}

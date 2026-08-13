@@ -75,7 +75,7 @@ public class AchatController {
         // Check stock availability
         int availableQuantity = article.getQuantite();
         if (achat.getQuantite() > availableQuantity) {
-            throw new RuntimeException("Insufficient stock for article: " + articleId);
+            throw new RuntimeException("Stock insuffisant pour l'article: " + articleId);
         }
 
         // Update the article's quantity
@@ -88,7 +88,7 @@ public class AchatController {
     private void handleArticleNotifications(Article article) {
         // Check if the quantity is now low
         if (article.getQuantite() <= 2) {
-            String message = String.format("The quantity of %s is low (current quantity: %d)!", article.getName(), article.getQuantite());
+            String message = String.format("La quantite de %s est faible (quantite actuelle: %d) !", article.getName(), article.getQuantite());
             List<Notification> existingNotifications = notificationRepository.findByMessageContaining(article.getName());
             if (existingNotifications.isEmpty()) {
                 Notification notification = new Notification(message);
@@ -108,13 +108,20 @@ public class AchatController {
     public String list(Model model,
                        @RequestParam(name="page", defaultValue = "0") int page,
                        @RequestParam(name="size", defaultValue = "3") int size,
-                       @RequestParam(name="keyword", defaultValue = "") String mc) {
+                       @RequestParam(name="keyword", defaultValue = "") String mc,
+                       @RequestParam(name="mode", defaultValue = "") String mode) {
         PageRequest pageable = PageRequest.of(page, size);
-        Page<Achat> pageAchats = achatRepository.findAll(pageable);
+        Page<Achat> pageAchats;
+        if (mode != null && !mode.isEmpty() && !"all".equals(mode)) {
+            pageAchats = achatRepository.findByModePayment(mode, pageable);
+        } else {
+            pageAchats = achatRepository.findAll(pageable);
+        }
         model.addAttribute("ListAchats", pageAchats.getContent());
         model.addAttribute("pages", new int[pageAchats.getTotalPages()]);
         model.addAttribute("currentpage", page);
         model.addAttribute("keyword", mc);
+        model.addAttribute("mode", mode);
         return "ListAchats";
     }
 

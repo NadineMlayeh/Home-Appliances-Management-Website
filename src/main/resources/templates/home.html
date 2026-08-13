@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
 
     <head>
         <!-- meta data -->
@@ -15,36 +15,39 @@
         <title>ElectroComfort</title>
 
         <!-- For favicon png -->
-		<link rel="shortcut icon" type="image/icon" href="assets/logo/logoo.png"/>
+		<link rel="shortcut icon" type="image/icon" href="/assets/logo/logoo.png"/>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
         <!--font-awesome.min.css-->
-        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/assets/css/font-awesome.min.css">
 
         <!--linear icon css-->
-		<link rel="stylesheet" href="assets/css/linearicons.css">
+		<link rel="stylesheet" href="/assets/css/linearicons.css">
 
 		<!--animate.css-->
-        <link rel="stylesheet" href="assets/css/animate.css">
+		<link rel="stylesheet" href="/assets/css/animate.css">
 
 		<!--flaticon.css-->
-        <link rel="stylesheet" href="assets/css/flaticon.css">
+		<link rel="stylesheet" href="/assets/css/flaticon.css">
 
 		<!--slick.css-->
-        <link rel="stylesheet" href="assets/css/slick.css">
-		<link rel="stylesheet" href="assets/css/slick-theme.css">
+		<link rel="stylesheet" href="/assets/css/slick.css">
+		<link rel="stylesheet" href="/assets/css/slick-theme.css">
 		
         <!--bootstrap.min.css-->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
 		
 		<!-- bootsnav -->
-		<link rel="stylesheet" href="assets/css/bootsnav.css" >	
+		<link rel="stylesheet" href="/assets/css/bootsnav.css" >
         
         <!--style.css-->
-        <link rel="stylesheet" href="assets/css/style.css">
+		<link rel="stylesheet" href="/assets/css/style.css">
         
         <!--responsive.css-->
-        <link rel="stylesheet" href="assets/css/responsive.css">
+		<link rel="stylesheet" href="/assets/css/responsive.css">
+
+		<!--shared header-->
+		<link rel="stylesheet" href="/assets/css/header.css">
         
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -126,64 +129,7 @@ nav ul {
         <![endif]-->
 
 		<!-- top-area Start -->
-		<section class="top-area">
-			<div class="header-area">
-				<!-- Start Navigation -->
-			    <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy"  data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
-
-			        <div class="container">
-
-			            <!-- Start Header Navigation -->
-			            <div class="navbar-header">
-			                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-			                    <i class="fa fa-bars"></i>
-			                </button>
-							<div class="logo">
-								<img src="assets/images/logoo.png" alt="#" style="width: 200px; height: auto;">
-							</div>
-			            </div><!--/.navbar-header-->
-			            <!-- End Header Navigation -->
-
-			            <!-- Collect the nav links, forms, and other content for toggling -->
-			            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
-			                <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-			                    <li class=" scroll active"><a href="">home</a></li>
-			                    <li><a href="/aboutus">a propos</a></li>
-			                    <li class="nav-item marques">
-									<a href="#">Marques</a>
-									<div class="marques-dropdown">
-										<div class="marque-item">
-											<img src="assets/sam.jfif" alt="Samsung">
-										</div>
-										<div class="marque-item">
-											<img src="assets/lg.jfif" alt="LG">
-										</div>
-										<div class="marque-item">
-											<img src="assets/mid.jfif" alt="Another Marque">
-										</div>
-										<div class="marque-item">
-											<img src="assets/news.png" alt="Samsung">
-										</div>
-										<div class="marque-item">
-											<img src="assets/saba.jpg" alt="LG">
-										</div>
-										<div class="marque-item">
-											<img src="assets/mont.png" alt="Another Marque">
-										</div>
-										<!-- Add more marque items as needed -->
-									</div>
-								</li>
-			                    <li class="scroll"><a href="#list-topics">nos produits</a></li>
-			                    <li><a href="/contact">contact</a></li>
-			                </ul><!--/.nav -->
-			            </div><!-- /.navbar-collapse -->
-			        </div><!--/.container-->
-			    </nav><!--/nav-->
-			    <!-- End Navigation -->
-			</div><!--/.header-area-->
-		    <div class="clearfix"></div>
-
-		</section><!-- /.top-area-->
+		<div th:replace="~{fragments/header :: headernav('home')}"></div>
 		<!-- top-area End -->
 
 		<!--welcome-hero start -->
@@ -209,7 +155,7 @@ nav ul {
 						<li>
 							<div class="single-list-topics-content">
 								<div class="single-list-topics-icon">
-									<img src="assets/fridge.png" alt="Fridge Icon" style="width: 30px; height: auto;">
+									<img src="/assets/fridge.png" alt="Fridge Icon" style="width: 30px; height: auto;">
 
 								</div>
 								<h2><a href="#">Réfrigérateurs</a></h2>
@@ -596,33 +542,15 @@ nav ul {
 		<!--blog end -->
 
 		<!--footer start-->
-		<footer id="footer"  class="footer">
-			<div class="container">
-
-				<div class="hm-footer-copyright">
-					<div class="row"><div>contactez nous : </div>
-						<div class="col-sm-7">
-							<div class="footer-social">
-								<span><i class="fa fa-phone"> +(216)98 288 549</i></span>
-								<a href="#"><i class="fa fa-facebook"></i></a>	
-								<a href="#"><i class="fa fa-twitter"></i></a>
-								<a href="#"><i class="fa fa-linkedin"></i></a>
-								<a href="#"><i class="fa fa-google-plus"></i></a>
-							</div>
-						</div>
-					</div>
-					
-				</div><!--/.hm-footer-copyright-->
-			</div><!--/.container-->
+		<div th:replace="~{fragments/sitefooter :: sitefooter}"></div>
 
 			<div id="scroll-Top">
 				<div class="return-to-top">
-					<i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title="" data-original-title="Back to Top" aria-hidden="true"></i>
+					<i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title="" data-original-title="Retour en haut" aria-hidden="true"></i>
 				</div>
 				
 			</div><!--/.scroll-Top-->
 			
-        </footer><!--/.footer-->
 		<!--footer end-->
 		
 		<!-- Include all js compiled plugins (below), or include individual files as needed -->
@@ -652,6 +580,9 @@ nav ul {
 		     
         <!--Custom JS-->
         <script src="assets/js/custom.js"></script>
+
+        <!--shared header JS-->
+        <script src="/assets/js/header.js"></script>
         
     </body>
 	

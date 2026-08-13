@@ -2,76 +2,146 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>Details du facture</title>
+    <title>Detail de la facture</title>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/admin-header.css">
     <style>
+        body {
+            background-color: #eef2f7;
+            font-family: "Poppins", sans-serif;
+        }
         .facture-container {
-            margin-top: 50px;
+            margin-top: 90px; /* clear the fixed admin header */
         }
         .facture-header {
-            background-color: #343a40;
+            background: linear-gradient(135deg, #2b3a4a, #1f2b38);
             color: #fff;
-            padding: 20px;
-            border-radius: 5px 5px 0 0;
+            padding: 22px 24px;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .facture-header h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        .facture-header .facture-badge {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #cfe0f0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
         }
         .facture-body {
-            padding: 20px;
-            border: 1px solid #dee2e6;
-            border-radius: 0 0 5px 5px;
+            padding: 28px;
+            border: 1px solid #e6ebf1;
+            border-radius: 0 0 12px 12px;
+            background-color: #fff;
         }
         .facture-footer {
-            background-color: #f8f9fa;
-            padding: 10px;
-            border-top: 1px solid #dee2e6;
+            background-color: #f8fafc;
+            padding: 14px 20px;
+            border-top: 2px solid #e6ebf1;
+            border-radius: 0 0 12px 12px;
             text-align: right;
-            font-weight: bold;
+            font-weight: 600;
             font-size: 1.2em;
+            color: #2b3a4a;
         }
         .facture-table th, .facture-table td {
-            border: 1px solid #dee2e6;
-            padding: 8px;
+            border: 1px solid #e6ebf1;
+            padding: 12px;
             text-align: center;
+            vertical-align: middle;
         }
         .facture-table th {
-            background-color: #e9ecef;
+            background-color: #f2f6fb;
+            color: #44546a;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.4px;
+            font-weight: 700;
+        }
+        .facture-table tbody tr {
+            transition: background-color 0.15s ease;
+        }
+        .facture-table tbody tr:hover {
+            background-color: #f5f9ff;
         }
         .facture-client, .facture-details {
             margin-bottom: 20px;
+            background-color: #f8fafc;
+            border: 1px solid #e6ebf1;
+            border-radius: 10px;
+            padding: 16px 20px;
+        }
+        .facture-client p, .facture-details p {
+            margin-bottom: 6px;
+            color: #3d4d61;
+        }
+        .facture-client h5, .facture-details h5 {
+            color: #2b3a4a;
+            font-weight: 700;
+            border-bottom: 2px solid #dfe7f0;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
         }
                         .table thead th {
-            border-bottom: 2px solid black; /* Thicker border for table header */
+            border-bottom: 2px solid #dfe7f0; /* Soft header border */
         }
                 .table tbody td {
-            border-bottom: 1px solid black; /* Thicker border for table rows */
+            border-bottom: 1px solid #edf1f6; /* Soft border for table rows */
         }
         .table th, .table td {
-            border: 1px solid black; /* Thicker border for table cells */
+            border: 1px solid #e6ebf1; /* Soft border for table cells */
             vertical-align: middle; /* Center align text vertically */
         }
         .custom-shadow {
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* Stronger custom shadow */
+    box-shadow: 0 12px 24px rgba(15, 44, 89, 0.18); /* Soft custom shadow */
 }
+        .facture-details-placeholder {
+            display: block;
+        }
+        .btn-back {
+            background-color: #f2f6fb;
+            color: #44546a;
+            border: 1px solid #dfe7f0;
+            border-radius: 8px;
+            padding: 8px 18px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.15s ease;
+        }
+        .btn-back:hover {
+            background-color: #e2eaf4;
+            color: #2b3a4a;
+        }
     </style>
 </head>
 <body>
+    <div th:replace="~{fragments/adminheader :: adminheadernav('achats')}"></div>
     <div class="container facture-container">
         <div class="custom-shadow">
             <div class="card-header facture-header">
-                <h2 class="mb-1"><b>Details facture</b></h2>
+                <h2 class="mb-1"><i class="fas fa-file-invoice"></i> Detail de la facture</h2>
+                <span class="facture-badge">Facture #<span th:text="${achat.id}"></span></span>
             </div>
             <div class="card-body facture-body">
                 <div class="row">
                     <div class="col-md-6 facture-client">
-                        <h5><b><u>Details Client :</u></b></h5>
-                        <p><strong>Nom:</strong> <span th:text="${achat.client.nom}"></span></p>
-                        <p><strong>Adresse:</strong> <span th:text="${achat.client.adresse}"></span></p>
-                        <p><strong>Numero de Telephone:</strong> <span th:text="${achat.client.numTelephone}"></span></p>
+                        <h5><u>Details Client :</u></h5>
+                        <p><strong>Nom :</strong> <span th:text="${achat.client.nom}"></span></p>
+                        <p><strong>Adresse :</strong> <span th:text="${achat.client.adresse}"></span></p>
+                        <p><strong>Numero de Telephone :</strong> <span th:text="${achat.client.numTelephone}"></span></p>
                     </div>
                     <div class="col-md-6 facture-details">
-                        <h5><b><u>Details Facture :</u></b></h5>
-                        <p><strong>ID:</strong> <span th:text="${achat.id}"></span></p>
-                        <p><strong>Date Achat:</strong> <span th:text="${achat.dateAchat}"></span></p>
+                        <h5><u>Details Facture :</u></h5>
+                        <p><strong>ID :</strong> <span th:text="${achat.id}"></span></p>
+                        <p><strong>Date Achat :</strong> <span th:text="${#dates.format(achat.dateAchat, 'dd-MM-yyyy')}"></span></p>
+                        <p><strong>Mode de Paiement :</strong> <span th:text="${achat.modePayment == 'comptant'} ? 'Comptant' : 'Facilite'"></span></p>
                     </div>
                 </div>
                 <table class="table facture-table mt-4">
@@ -93,8 +163,11 @@
                     </tbody>
                 </table>
                 <div class="facture-footer">
-                    <h4><b>Total: </b><span th:text="${achat.montant}"></span> Dinars </h4>
+                    <h4 class="m-0"><b>Total : </b><span th:text="${achat.montant}"></span> Dinars</h4>
                 </div>
+            </div>
+            <div class="text-right p-3" style="background-color: #fff; border: 1px solid #e6ebf1; border-top: none; border-radius: 0 0 12px 12px;">
+                <a class="btn-back" href="#" onclick="window.history.back();"><i class="fas fa-arrow-left"></i> Retour</a>
             </div>
         </div>
     </div>

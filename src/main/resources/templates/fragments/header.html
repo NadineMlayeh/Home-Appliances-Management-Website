@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="headernav(activePage)" id="siteheader">
+    <div class="header-area">
+        <nav class="navbar navbar-default bootsnav">
+            <div class="container">
+                <!-- Header Navigation (logo + hamburger) -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" aria-label="Menu">
+                        <i class="fa fa-bars" aria-hidden="true"></i>
+                    </button>
+                    <div class="logo">
+                        <a href="/home">
+                            <img src="/assets/images/logoo.png" alt="ElectroComfort" style="width: 200px; height: auto;">
+                        </a>
+                    </div>
+                </div><!--/.navbar-header-->
+
+                <!-- Nav links -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li th:classappend="${activePage == 'home'} ? 'active' : ''">
+                            <a href="/home">Accueil</a>
+                        </li>
+                        <li th:classappend="${activePage == 'about'} ? 'active' : ''">
+                            <a href="/aboutus">A propos</a>
+                        </li>
+                        <li class="nav-item marques">
+                            <a href="#">Marques</a>
+                            <div class="marques-dropdown">
+                                <div class="marque-item">
+                                    <img src="/assets/sam.jfif" alt="Samsung">
+                                </div>
+                                <div class="marque-item">
+                                    <img src="/assets/lg.jfif" alt="LG">
+                                </div>
+                                <div class="marque-item">
+                                    <img src="/assets/mid.jfif" alt="MIDEA">
+                                </div>
+                                <div class="marque-item">
+                                    <img src="/assets/news.png" alt="News">
+                                </div>
+                                <div class="marque-item">
+                                    <img src="/assets/saba.jpg" alt="SABA">
+                                </div>
+                                <div class="marque-item">
+                                    <img src="/assets/mont.png" alt="Mont">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="/home#list-topics">Nos produits</a>
+                        </li>
+                        <li th:classappend="${activePage == 'contact'} ? 'active' : ''">
+                            <a href="/contact">Contact</a>
+                        </li>
+                    </ul>
+                </div><!--/.navbar-collapse-->
+            </div><!--/.container-->
+        </nav>
+    </div>
+</div>
+
+</body>
+</html>

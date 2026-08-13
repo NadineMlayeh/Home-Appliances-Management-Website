@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
     <head>
         <!-- Meta Tags -->
 		<meta charset="utf-8">
@@ -13,34 +13,37 @@
         <title>ElectroComfort</title>
 		
 		<!-- Favicon -->
-        <link rel="icon" href="img/favicon.png">
+		<link rel="icon" href="/img/favicon.png">
 		
 		<!-- Google Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
 
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<!-- Nice Select CSS -->
-		<link rel="stylesheet" href="css/nice-select.css">
+		<link rel="stylesheet" href="/css/nice-select.css">
 		<!-- Font Awesome CSS -->
-        <link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="/css/font-awesome.min.css">
 		<!-- icofont CSS -->
-        <link rel="stylesheet" href="css/icofont.css">
+		<link rel="stylesheet" href="/css/icofont.css">
 		<!-- Slicknav -->
-		<link rel="stylesheet" href="css/slicknav.min.css">
+		<link rel="stylesheet" href="/css/slicknav.min.css">
 		<!-- Owl Carousel CSS -->
-        <link rel="stylesheet" href="css/owl-carousel.css">
+		<link rel="stylesheet" href="/css/owl-carousel.css">
 		<!-- Datepicker CSS -->
-		<link rel="stylesheet" href="css/datepicker.css">
+		<link rel="stylesheet" href="/css/datepicker.css">
 		<!-- Animate CSS -->
-        <link rel="stylesheet" href="css/animate.min.css">
+		<link rel="stylesheet" href="/css/animate.min.css">
 		<!-- Magnific Popup CSS -->
-        <link rel="stylesheet" href="css/magnific-popup.css">
-		
+		<link rel="stylesheet" href="/css/magnific-popup.css">
+        
 		<!-- Medipro CSS -->
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="css/responsive.css">
+		<link rel="stylesheet" href="/css/normalize.css">
+		<link rel="stylesheet" href="/style.css">
+		<link rel="stylesheet" href="/css/responsive.css">
+
+		<!-- Shared site header -->
+		<link rel="stylesheet" href="/assets/css/header.css">
 	<style>
 		.contact-us .inner{
 	box-shadow: 0px 0px 10px #00000024;
@@ -53,6 +56,8 @@
 }
 .contact-us .contact-us-form{
 	padding:50px 40px;
+	background: #ffffff;
+	height: 100%;
 }
 .contact-us .contact-us-form h2 {
 	position: relative;
@@ -86,33 +91,53 @@
 	
 }
 .contact-us .form .form-group {
-	margin-bottom: 22px;
+	margin-bottom: 20px;
 }
-.contact-us .form .form-group input {
-	width: 100%;
-	height: 50px;
-	box-shadow: 0 0 15px rgba(30, 144, 255, 0.7), 0 0 25px rgba(30, 144, 255, 0.5);
-	text-transform: capitalize;
-	padding: 0px 18px;
-	color: #555;
-	font-size: 14px;
-	font-weight: 400;
-	border-radius: 4px;
-}
+.contact-us .form .form-group input,
 .contact-us .form .form-group textarea {
 	width: 100%;
-	height:100px;
-	border: 1px solid #eee;
-	text-transform: capitalize;
-	padding:18px;
-	color: #555;
+	border: 2px solid #e3eaf1;
+	background: #f7fafc;
+	box-shadow: none;
+	color: #444;
 	font-size: 14px;
 	font-weight: 400;
-	border-radius: 4px;
-	box-shadow: 0 0 15px rgba(30, 144, 255, 0.7), 0 0 25px rgba(30, 144, 255, 0.5);
+	text-transform: capitalize;
+	-webkit-transition: border-color .3s ease, box-shadow .3s ease, background-color .3s ease;
+	-moz-transition: border-color .3s ease, box-shadow .3s ease, background-color .3s ease;
+	-o-transition: border-color .3s ease, box-shadow .3s ease, background-color .3s ease;
+	transition: border-color .3s ease, box-shadow .3s ease, background-color .3s ease;
+}
+.contact-us .form .form-group input {
+	height: 50px;
+	border-radius: 10px;
+	padding: 0 18px;
+}
+.contact-us .form .form-group textarea {
+	height: 120px;
+	border-radius: 10px;
+	padding: 15px 18px;
+	resize: vertical;
+}
+.contact-us .form .form-group input:hover,
+.contact-us .form .form-group textarea:hover {
+	border-color: #bcd6ef;
+}
+.contact-us .form .form-group input:focus,
+.contact-us .form .form-group textarea:focus {
+	outline: none;
+	border-color: #1A76D1;
+	background: #fff;
+	box-shadow: 0 8px 20px rgba(26, 118, 209, 0.12);
+}
+.contact-us .form .form-group input::placeholder,
+.contact-us .form .form-group textarea::placeholder {
+	color: #93a4b7;
+	font-weight: 400;
 }
 .contact-us .form .form-group.login-btn {
 	margin: 0;
+	margin-top: 6px;
 }
 .contact-us .form button {
 	border: none;
@@ -122,11 +147,33 @@
 	margin-right: 10px;
 	color: #fff;
 	line-height: 20px;
-	width:100%;
+	width: 100%;
+	padding: 15px 30px;
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	border-radius: 50px;
+	background: #1A76D1;
+	background: -webkit-linear-gradient(135deg, #1A76D1 0%, #0f5bab 100%);
+	background: -moz-linear-gradient(135deg, #1A76D1 0%, #0f5bab 100%);
+	background: linear-gradient(135deg, #1A76D1 0%, #0f5bab 100%);
+	box-shadow: 0 8px 20px rgba(26, 118, 209, 0.35);
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
 }
 .contact-us .form .btn:hover{
-	background:#1A76D1;
-	color:#fff;
+	color: #fff;
+	background: #0f5bab;
+	background: -webkit-linear-gradient(135deg, #0f5bab 0%, #0a3c78 100%);
+	background: -moz-linear-gradient(135deg, #0f5bab 0%, #0a3c78 100%);
+	background: linear-gradient(135deg, #0f5bab 0%, #0a3c78 100%);
+	-webkit-transform: translateY(-2px);
+	-moz-transform: translateY(-2px);
+	transform: translateY(-2px);
+	box-shadow: 0 12px 26px rgba(26, 118, 209, 0.45);
 }
 .contact-us .contact-us-form .checkbox {
 	text-align: left;
@@ -269,6 +316,9 @@
     </head>
     <body>
 	
+		<!-- Shared header -->
+		<div th:replace="~{fragments/header :: headernav('contact')}"></div>
+	
 		<!-- Preloader -->
         <div class="preloader">
             <div class="loader">
@@ -293,7 +343,7 @@
 		<!-- Header Area -->
 		
 		<!-- Breadcrumbs -->
-		<div class="breadcrumbs" overlay style="background-image: url('bread-bg.jpg');">
+		<div class="breadcrumbs" overlay style="background-image: url('/bread-bg.jpg');">
 			<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(61, 137, 223, 0.4); z-index: 1;"></div>
 			<div class="container">
 				<div class="bread-inner">
@@ -301,7 +351,7 @@
 						<div class="col-12">
 							<h2>Laissez un message !</h2>
 							<ul class="bread-list">
-								<li><a href="/home">Home</a></li>
+								<li><a href="/home">Accueil</a></li>
 								<li><i class="icofont-simple-right"></i></li>
 								<li class="active">Contactez nous</li>
 							</ul>
@@ -402,7 +452,7 @@
 		</section>
 		<!--/ End Contact Us -->
 		
-
+		<div th:replace="~{fragments/sitefooter :: sitefooter}"></div>
 		
 		<!-- jquery Min JS -->
         <script src="js/jquery.min.js"></script>
@@ -450,6 +500,7 @@
 		<script src="js/bootstrap.min.js"></script>
 		<!-- Main JS -->
 		<script src="js/main.js"></script>
+		<script src="/assets/js/header.js"></script>
 		<script>
 		   document.getElementById("noteForm").addEventListener("submit", function(event){
 		       event.preventDefault(); // Prevent default form submission

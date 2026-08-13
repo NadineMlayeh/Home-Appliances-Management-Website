@@ -1,0 +1,304 @@
+/* ============================================================
+   Shared admin header (used by every admin page)
+   Self-contained: everything is scoped under #adminheader so it
+   can be dropped onto any admin layout (bootstrap 4 / custom
+   flex-centred forms / medipro) without clashing.
+   The header is FIXED at the top, so pages must add a little
+   top padding/margin to their main content.
+   ============================================================ */
+#adminheader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1050;
+    background-color: #fff;
+    -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    font-family: 'Poppins', sans-serif;
+}
+#adminheader .admin-inner {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    height: 64px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#adminheader .admin-logo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+#adminheader .admin-logo img {
+    height: 38px;
+    width: auto;
+    display: block;
+}
+#adminheader .admin-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+#adminheader .admin-nav > li {
+    position: relative;
+    margin: 0 2px;
+}
+#adminheader .admin-nav > li > a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 22px 13px;
+    color: #333;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    -webkit-transition: color 0.2s linear, border-color 0.2s linear;
+    -moz-transition: color 0.2s linear, border-color 0.2s linear;
+    -o-transition: color 0.2s linear, border-color 0.2s linear;
+    transition: color 0.2s linear, border-color 0.2s linear;
+}
+#adminheader .admin-nav > li > a i {
+    margin-right: 7px;
+    font-size: 14px;
+}
+#adminheader .admin-nav > li > a .admin-caret {
+    margin-right: 0;
+    margin-left: 5px;
+    font-size: 10px;
+    color: inherit;
+}
+#adminheader .admin-nav > li > a:hover,
+#adminheader .admin-nav > li.active > a {
+    color: #1A76D1;
+    border-bottom-color: #1A76D1;
+}
+
+/* ---------- dropdown submenus ---------- */
+#adminheader .admin-submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 210px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    border-radius: 6px;
+    padding: 8px 0;
+    list-style: none;
+    margin: 0;
+    z-index: 1060;
+}
+#adminheader .admin-nav > li:hover .admin-submenu {
+    display: block;
+    -webkit-animation: adminFadeIn 0.2s ease;
+    -moz-animation: adminFadeIn 0.2s ease;
+    animation: adminFadeIn 0.2s ease;
+}
+#adminheader .admin-submenu li a {
+    display: block;
+    padding: 10px 18px;
+    color: #444;
+    font-size: 13px;
+    font-weight: 400;
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 1px solid #f0f0f0;
+    -webkit-transition: background-color 0.2s ease, color 0.2s ease;
+    -moz-transition: background-color 0.2s ease, color 0.2s ease;
+    -o-transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+#adminheader .admin-submenu li a:hover {
+    background-color: #f2f7fd;
+    color: #1A76D1;
+}
+#adminheader .admin-submenu li:last-child a {
+    border-bottom: 0;
+}
+@-webkit-keyframes adminFadeIn {
+    0% { opacity: 0; -webkit-transform: translateY(-4px); transform: translateY(-4px); }
+    100% { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+}
+@keyframes adminFadeIn {
+    0% { opacity: 0; -webkit-transform: translateY(-4px); transform: translateY(-4px); }
+    100% { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+}
+
+/* ---------- right side (notification bell + logout) ---------- */
+#adminheader .admin-right {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 12px;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+#adminheader .admin-bell {
+    position: relative;
+    display: inline-block;
+    line-height: 0;
+}
+#adminheader .admin-bell > a {
+    color: #333;
+    font-size: 18px;
+    line-height: 1;
+    text-decoration: none;
+    -webkit-transition: color 0.2s ease;
+    -moz-transition: color 0.2s ease;
+    transition: color 0.2s ease;
+}
+#adminheader .admin-bell > a:hover {
+    color: #1A76D1;
+}
+#adminheader .admin-bell .badge {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: #ff545a;
+    color: #fff;
+    border-radius: 50%;
+    padding: 4px 7px;
+    font-size: 11px;
+    line-height: 1;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+#adminheader .admin-bell .badge.hidden {
+    display: none;
+}
+#adminheader .notification-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 340px;
+    max-height: 380px;
+    overflow-y: auto;
+    z-index: 1070;
+    font-family: 'Poppins', sans-serif;
+    text-transform: none;
+}
+#adminheader .notification-dropdown.show {
+    display: block;
+}
+#adminheader .notification-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#adminheader .notification-dropdown li {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+}
+#adminheader .notification-dropdown li:last-child {
+    border-bottom: none;
+}
+#adminheader .notification-dropdown li a {
+    display: block;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+    text-transform: none;
+    -webkit-transition: background-color 0.2s ease, color 0.2s ease;
+    -moz-transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+#adminheader .notification-dropdown li a:hover {
+    background-color: #D3D3D3;
+    color: #ff545a;
+}
+#adminheader .admin-logout {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 20px;
+    background-color: #1A76D1;
+    color: #fff;
+    border-radius: 24px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    -webkit-transition: background-color 0.2s ease, -webkit-transform 0.2s ease;
+    -moz-transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+#adminheader .admin-logout:hover {
+    background-color: #0f5bab;
+    color: #fff;
+    -webkit-transform: translateY(-1px);
+    transform: translateY(-1px);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 991px) {
+    #adminheader .admin-inner {
+        height: 56px;
+    }
+    #adminheader .admin-logout {
+        padding: 8px 14px;
+        font-size: 12px;
+    }
+    #adminheader .admin-nav > li > a {
+        padding: 18px 8px;
+        font-size: 12px;
+    }
+}
+@media (max-width: 767px) {
+    #adminheader .admin-nav > li > a {
+        padding: 18px 6px;
+        font-size: 11px;
+    }
+    #adminheader .admin-nav > li > a span,
+    #adminheader .admin-logout span {
+        display: none;
+    }
+    #adminheader .admin-logo img {
+        height: 30px;
+    }
+}

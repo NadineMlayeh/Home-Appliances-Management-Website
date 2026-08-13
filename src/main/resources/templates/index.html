@@ -42,6 +42,7 @@
       <link rel="stylesheet" href="css/normalize.css">
       <link rel="stylesheet" href="style.css">
       <link rel="stylesheet" href="css/responsive.css">
+      <link rel="stylesheet" href="/assets/css/admin-header.css">
 <style>
 .notification-badge {
     position: relative;
@@ -141,6 +142,7 @@ body {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
+	padding-top: 72px; /* clear the fixed admin header */
 }
 		@media (max-width: 768px) {
 	.main-menu {
@@ -229,86 +231,8 @@ body {
       <!-- End Preloader -->
 
 
-<!-- Header Area -->
-<header class="header" >
-	<!-- Topbar -->
-
-	<!-- End Topbar -->
-	<!-- Header Inner -->
-	<div class="header-inner">
-		<div class="container">
-			<div class="inner">
-				<div class="row align-items-center">
-					<div class="col-lg-3 col-md-4 col-8">
-						<!-- Start Logo -->
-						<div class="logo">
-							<a href="index.html"><img src="img/logoo.png" alt="#"></a>
-						</div>
-						<!-- End Logo -->
-						<!-- Mobile Nav -->
-						<div class="mobile-nav"></div>
-						<!-- End Mobile Nav -->
-					</div>
-					<div class="col-lg-8 col-md-9 col-sm-10 col-12">
-						<!-- Main Menu -->
-						<div class="main-menu">
-							<nav class="navigation">
-								<ul class="nav menu">
-						            <li><a href="#"><i class="fas fa-user" style="margin-right: 5px;" ></i>Gestion du client <i class="icofont-rounded-down"></i></a>
-										<ul class="dropdown">
-											<li><a href="/addClient">Ajouter client</a></li>
-											<li><a href="/ListClients">Afficher clients</a></li>
-										</ul>
-									</li>
-									<li><a href="#"><i class="fas fa-box" style="margin-right: 5px;" ></i>Gestion d'article <i class="icofont-rounded-down"></i></a>
-										<ul class="dropdown">
-											<li><a href="/addArticle">Ajouter article</a></li>
-											<li><a href="/ListArticles">Afficher articles</a></li>
-										</ul>
-									</li>
-									<li><a href="#"><i class="fas fa-shopping-cart" style="margin-right: 5px;" ></i>Gestion de ventes <i class="icofont-rounded-down"></i></a>
-										<ul class="dropdown">
-											<li><a href="/addAchat">Ajouter vente</a></li>
-											<li><a href="/ListAchats">Afficher ventes</a></li>
-										</ul>
-									</li>
-									<li><a href="/messages"><i class="fas fa-envelope" style="margin-right: 5px;" ></i>Messages</a></li>
-									<li class="notification-badge">
-						                <a href="#" id="notificationIcon"><i class="fas fa-bell" style="margin-right: 5px;"></i>Notifications</a>
-						                
-						                <span class="badge" th:text="${unreadCount}" th:classappend="${unreadCount == 0} ? 'hidden' : ''"></span>
-						                <div class="notification-dropdown" id="notificationDropdown">
-						                    <ul>
-											<li th:each="notification : ${notifications}">
-											  <a
-											        th:href="@{${notification.article != null} ? '/addqte?articleId=' + ${notification.article.id} : '#'}"
-											        th:text="${notification.message}"
-											        style="display: block; padding: 10px; color: #333; text-decoration: none;"
-											        onmouseover="this.style.color='red'; this.style.backgroundColor='#D3D3D3';"
-											        onmouseout="this.style.color='#333'; this.style.backgroundColor='transparent';">
-   											 </a>
-											</li>
-						                    </ul>
-						                </div>
-						            </li>
-								</ul>
-							</nav>
-						</div>
-						<!--/ End Main Menu -->
-						
-					</div>
-					<div class="col-lg-1 col-sm-2 col-12">
-						<div class="get-quote">
-							<a th:href="@{/logout}" class="btn" style="color:white">Log out</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--/ End Header Inner -->
-</header>
-<!-- End Header Area -->
+<!-- Shared admin header -->
+<div th:replace="~{fragments/adminheader :: adminheadernav('dashboard')}"></div>
 <section class="slider">
 	<div class="hero-slider">
 		<!-- Start Single Slider -->

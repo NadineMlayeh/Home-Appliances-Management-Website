@@ -4,70 +4,105 @@
     <title>Liste des Achats pour Client</title>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/admin-header.css">
     <style>
 	    body{
 	    background: url('img2.png') no-repeat;
 	    background-size: cover; /* Ensure the image covers the entire body */
 	    background-repeat: no-repeat; /* Prevent the image from repeating */
 	    background-position: center;
+	    padding-top: 74px; /* clear the fixed admin header */
 	    }
 	    *{
             font-family: "Poppins", sans-serif;
         }
 
         .container {
-            background-color: rgba(255, 255, 255, 0.7);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 90px;
         }
 
-        h1 {
-            font-size: 2rem;
-            color: #343a40;
-            margin-bottom: 20px;
-            text-align: center; /* Center align the heading */
-            font-weight: bold;
+        .card-header {
+            background-color: #2b3a4a;
+            color: #fff;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.4rem;
+            padding: 16px 20px;
+            border: none;
+            border-radius: 10px 10px 0 0;
+        }
+        .card-body {
+            background-color: #ffffff;
+        }
+        .card {
+            background-color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(15, 44, 89, 0.14);
+            overflow: hidden;
         }
 
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-bottom: 1rem;
-            color: #212529;
+        .table {
+            background-color: #fff;
+            margin-bottom: 0;
         }
 
-        .table th,
-        .table td {
-            padding: 12px;
-            text-align: left;
-            border-top: 1px solid #dee2e6;
+        .table th, .table td {
             vertical-align: middle;
+            padding: 12px 14px;
         }
-
-        .table th {
-            background-color: #007bff;
-            color: white;
+        .table thead th {
+            background-color: #f2f6fb;
+            color: #44546a;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            border-bottom: 2px solid #dfe7f0;
+            white-space: nowrap;
         }
-        .table th, .table td {
-            vertical-align: middle; /* Center align text vertically */
+        .table tbody td {
+            border-bottom: 1px solid #edf1f6;
         }
-                .table thead th {
-            border-bottom: 2px solid black; /* Thicker border for table header */
+        .table tbody tr:last-child td {
+            border-bottom: none;
         }
-                .table tbody td {
-            border-bottom: 1px solid black; /* Thicker border for table rows */
+        .table tbody tr {
+            transition: background-color 0.15s ease;
         }
-        .table th, .table td {
-            border: 1px solid black; /* Thicker border for table cells */
-            vertical-align: middle; /* Center align text vertically */
+        .table tbody tr:hover {
+            background-color: #f4f8ff;
         }
         .table-striped tbody tr:nth-of-type(odd) {
-            background-color: rgba(0, 123, 255, 0.05); /* Light blue stripe */
+            background-color: #fafcff;
+        }
+
+        .badge-payment {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .badge-comptant {
+            background-color: #e6f7ee;
+            color: #1a9d5a;
+            border: 1px solid #bfe9d3;
+        }
+        .badge-facilite {
+            background-color: #eef3ff;
+            color: #2f6fe0;
+            border: 1px solid #cddbf8;
+        }
+
+        .table-responsive {
+            border: 1px solid #e6ebf1;
+            border-radius: 8px;
         }
 
         .pagination {
             justify-content: center;
+            margin-top: 20px;
         }
 
         .page-item.active .page-link {
@@ -78,6 +113,8 @@
 
         .page-link {
             color: #007bff;
+            border-radius: 8px;
+            margin: 0 3px;
         }
 
         .page-link:hover {
@@ -86,37 +123,48 @@
     </style>
 </head>
 <body>
+    <div th:replace="~{fragments/adminheader :: adminheadernav('clients')}"></div>
     <div class="container mt-5">
-        <h1>Liste des Achats pour <span th:text="${client.nom}">Client</span></h1>
-        <table class="table table-striped table-bordered mt-3">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Article</th>
-                    <th>Date d'Achat</th>
-                    <th>Quantite</th>
-                    <th>Montant</th>
-                    <th>Mode de Paiement</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="achat : ${ListAchats}">
-                    <td th:text="${achat.id}"></td>
-                    <td th:text="${achat.article.name}"></td>
-                    <td th:text="${achat.dateAchat}"></td>
-                    <td th:text="${achat.quantite}"></td>
-                    <td th:text="${achat.montant}"></td>
-                    <td th:text="${achat.modePayment}"></td>
-                </tr>
-            </tbody>
-        </table>
-        <nav>
-            <ul class="pagination">
-                <li th:each="page, status : ${pages}" class="page-item" th:classappend="${status.index == currentpage ? ' active' : ''}">
-                    <a class="page-link" th:href="@{/listAchatsByClient(clientId=${client.id}, page=${status.index})}" th:text="${status.index + 1}"></a>
-                </li>
-            </ul>
-        </nav>
+        <div class="card">
+            <div class="card-header">Liste des achats - <span th:text="${client.nom}">Client</span></div>
+            <div class="card-body">
+                <div class="table-responsive">
+                <table class="table table-striped mt-0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Article</th>
+                            <th>Date d'Achat</th>
+                            <th>Quantite</th>
+                            <th>Montant</th>
+                            <th>Mode de Paiement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="achat : ${ListAchats}">
+                            <td th:text="${achat.id}"></td>
+                            <td th:text="${achat.article.name}"></td>
+                            <td th:text="${#dates.format(achat.dateAchat, 'dd-MM-yyyy')}"></td>
+                            <td th:text="${achat.quantite}"></td>
+                            <td th:text="${achat.montant}"></td>
+                            <td>
+                                <span class="badge badge-payment" 
+                                      th:classappend="${achat.modePayment == 'comptant'} ? 'badge-comptant' : 'badge-facilite'"
+                                      th:text="${achat.modePayment == 'comptant'} ? 'Comptant' : 'Facilite'"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+                <nav>
+                    <ul class="pagination">
+                        <li th:each="page, status : ${pages}" class="page-item" th:classappend="${status.index == currentpage ? ' active' : ''}">
+                            <a class="page-link" th:href="@{/listAchatsByClient(clientId=${client.id}, page=${status.index})}" th:text="${status.index + 1}"></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </div>
 </body>
 </html>
