@@ -1,4 +1,4 @@
-# 🏠 Electroménager Management Website — Spring Boot Project
+# 🏠 Home Appliances Management Website — Spring Boot Project
 
 **Electroménager Management** is a full-stack web application built with **Spring Boot**, **MySQL**, and frontend technologies (**HTML, CSS, JavaScript**).  
 The project simulates a **home appliances store** with both **admin management features** and a **client browsing experience**, designed to showcase secure login, product management, and interactive client feedback.
