@@ -35,7 +35,7 @@ public class ArticleController {
     @Autowired
     private AchatRepository achatRepository;
     
-    @GetMapping("/addArticle")
+    @GetMapping({"/addArticle", "/addarticle"})
     public String showArticleForm(Model model) {
         model.addAttribute("article", new Article());
         return "formArticle";

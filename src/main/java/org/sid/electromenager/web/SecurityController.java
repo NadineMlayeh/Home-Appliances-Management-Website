@@ -36,18 +36,18 @@ public class SecurityController {
         model.addAttribute("notes", notes);
         return "ListMessages";
     }
-    //displaying admins page
+	//displaying admins page
 	@GetMapping("/admin")
 	public String adminPage(Authentication authentication, Model model) {
-	    if (authentication != null) {
-	        model.addAttribute("username", authentication.getName());
-	    } else {
-	        model.addAttribute("error", "You are not authenticated.");
-	    }
-	    return "index"; 
+	    return "redirect:/index";
 	}
 
 	//displaying home page
+    @GetMapping("/")
+    public String root() {
+        return "home";
+    }
+
     @GetMapping("/home")
     public String home() {
         return "home"; 

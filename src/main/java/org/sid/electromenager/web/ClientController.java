@@ -21,7 +21,7 @@ public class ClientController {
     private ClientRepository clientRepository;
     private AchatRepository achatRepository;
     
-    @GetMapping("/addClient")
+    @GetMapping({"/addClient", "/addclient"})
     public String showArticleForm(Model model) {
         model.addAttribute("client", new Client());
         return "formClient";

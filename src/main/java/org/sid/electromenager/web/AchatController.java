@@ -35,7 +35,7 @@ public class AchatController {
     @Autowired
     private NotificationRepository notificationRepository;
 
-    @GetMapping("/addAchat")
+    @GetMapping({"/addAchat", "/addachat"})
     public String showAchatForm(Model model) {
         model.addAttribute("achat", new Achat());
         List<Client> clients = clientRepository.findAll();

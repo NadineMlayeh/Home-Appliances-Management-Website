@@ -51,12 +51,22 @@ public class SecurityConfig {
                     new AntPathRequestMatcher("/**/*.jfif", null, false),
                     new AntPathRequestMatcher("/**/*.css", null, false)
                 ).permitAll() // Static images/css anywhere (case-insensitive); avoids the PathPattern error on "/**/*.ext"
-                .requestMatchers("/admin/**", "/addArticle", "/addAchat", "/addClient").hasRole("ADMIN")
+                .requestMatchers(
+                    "/admin",
+                    "/admin/**",
+                    "/index",
+                    "/addArticle",
+                    "/addarticle",
+                    "/addAchat",
+                    "/addachat",
+                    "/addClient",
+                    "/addclient"
+                ).hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/home", true) // Simplify to check
+                .defaultSuccessUrl("/index", false)
                 .permitAll()
                 .and()
             .logout()
