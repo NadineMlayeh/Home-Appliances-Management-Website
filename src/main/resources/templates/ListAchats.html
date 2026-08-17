@@ -9,11 +9,12 @@
         <link rel="stylesheet" href="/assets/css/admin-header.css">
     <style>
 	    body{
-	    background: url('111.png') no-repeat;
-	        background-size: cover; /* Ensure the image covers the entire body */
-	    background-repeat: no-repeat; /* Prevent the image from repeating */
-	    background-position: center;
-	    padding-top: 74px; /* clear the fixed admin header */
+	        background-image: url('/img/fr.png');
+	        background-size: cover;
+	        background-repeat: no-repeat;
+	        background-position: center;
+	        background-attachment: fixed;
+	        padding-top: 74px;
 	    }
         *{
 
@@ -234,22 +235,22 @@
                     <tbody>
                         <tr th:each="achat : ${ListAchats}">
                             <td th:text="${achat.id}"></td>
-                            <td th:text="${achat.client.nom}"></td>
-                            <td th:text="${achat.article.name}"></td>
-                            <td th:text="${#dates.format(achat.dateAchat, 'dd-MM-yyyy')}"></td>
+                            <td th:text="${achat.client != null ? achat.client.nom + ' ' + (achat.client.prenom != null ? achat.client.prenom : '') : '-'}"></td>
+                            <td th:text="${achat.article != null ? achat.article.name : '-'}"></td>
+                            <td th:text="${achat.dateAchat != null ? #dates.format(achat.dateAchat, 'dd-MM-yyyy') : '-'}"></td>
                             <td th:text="${achat.quantite}"></td>
-                            <td th:text="${achat.montant}"></td>
+                            <td><b th:text="${achat.montant != null ? #numbers.formatDecimal(achat.montant, 1, 2) + ' TND' : '-'}"></b></td>
                             <td>
                                 <span class="badge badge-payment" 
                                       th:classappend="${achat.modePayment == 'comptant'} ? 'badge-comptant' : 'badge-facilite'"
-                                      th:text="${achat.modePayment == 'comptant'} ? 'Comptant' : 'Facilite'"></span>
+                                      th:text="${achat.modePayment == 'comptant'} ? 'Comptant' : 'Facilité'"></span>
                             </td>
                             <td>
-                                <span th:if="${achat.montantRestant == 0}" class="badge badge-payment badge-paid">Paye</span>
+                                <span th:if="${achat.montantRestant == 0}" class="badge badge-payment badge-paid">Payé</span>
                                 <span th:if="${achat.montantRestant > 0}" class="badge badge-payment badge-encours">En cours</span>
                             </td>
                             <td class="text-center action-cell">
-                                <a onclick="return confirm('Etes-vous sur de vouloir supprimer cet achat ?')" class="btn btn-danger btn-sm-action" th:href="@{/deleteAchat(id=${achat.id})}"><i class="fas fa-trash-alt"></i></a>
+                                <a data-confirm="Etes-vous sur de vouloir supprimer cet achat ?" class="btn btn-danger btn-sm-action" th:href="@{/deleteAchat(id=${achat.id})}"><i class="fas fa-trash-alt"></i></a>
                                 <a class="btn btn-success btn-sm-action" th:href="@{/editAchat(id=${achat.id})}"><i class="fas fa-pen"></i></a>
                                 <a class="btn btn-warning btn-sm-action" th:href="@{/facture/{id}(id=${achat.id})}"><i class="fas fa-file-invoice"></i></a>
                                 <span th:if="${achat.montantRestant == 0}" class="btn btn-paid btn-sm-action"><i class="fas fa-check"></i></span>
@@ -259,7 +260,11 @@
                     </tbody>
                 </table>
                 </div>
-                <ul class="pagination justify-content-center mt-4">
+                <div class="text-center py-4 text-muted" th:if="${ListAchats == null || ListAchats.isEmpty()}">
+                    <i class="fas fa-shopping-cart fa-3x mb-3" style="color: #cbd5e1;"></i>
+                    <p class="mb-0">Aucune vente enregistrée.</p>
+                </div>
+                <ul class="pagination justify-content-center mt-4" th:if="${pages != null && pages.length > 1}">
                     <li th:each="page, status : ${pages}" class="page-item" th:classappend="${status.index == currentpage ? 'active' : ''}">
                         <a class="page-link" th:href="@{/ListAchats(page=${status.index}, keyword=${keyword}, mode=${mode})}" th:text="${status.index + 1}"></a>
                     </li>

@@ -23,7 +23,7 @@ public class SecurityController {
     @PostMapping("/saveNote")
     public String saveNote(Note note) {
         noteRepository.save(note);
-        return "redirect:/home";
+        return "redirect:/contact?msg=sent_message";
     }    
     @GetMapping("/contact")
     public String contact(Model model) {

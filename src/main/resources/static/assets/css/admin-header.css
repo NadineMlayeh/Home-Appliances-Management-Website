@@ -205,14 +205,14 @@
 #adminheader .notification-dropdown {
     display: none;
     position: absolute;
-    top: 100%;
+    top: calc(100% + 8px);
     right: 0;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 340px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    -webkit-box-shadow: 0 12px 30px rgba(15, 23, 42, 0.16);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.16);
+    width: 360px;
     max-height: 380px;
     overflow-y: auto;
     z-index: 1070;
@@ -221,6 +221,7 @@
 }
 #adminheader .notification-dropdown.show {
     display: block;
+    animation: adminFadeIn 0.2s ease;
 }
 #adminheader .notification-dropdown ul {
     list-style: none;
@@ -228,8 +229,8 @@
     padding: 0;
 }
 #adminheader .notification-dropdown li {
-    padding: 12px 15px;
-    border-bottom: 1px solid #eee;
+    padding: 0;
+    border-bottom: 1px solid #f1f5f9;
     font-size: 13px;
 }
 #adminheader .notification-dropdown li:last-child {
@@ -237,17 +238,19 @@
 }
 #adminheader .notification-dropdown li a {
     display: block;
-    padding: 10px;
-    color: #333;
+    padding: 12px 16px;
+    color: #334155;
     text-decoration: none;
     text-transform: none;
+    font-weight: 500;
+    line-height: 1.45;
     -webkit-transition: background-color 0.2s ease, color 0.2s ease;
     -moz-transition: background-color 0.2s ease, color 0.2s ease;
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 #adminheader .notification-dropdown li a:hover {
-    background-color: #D3D3D3;
-    color: #ff545a;
+    background-color: #fef2f2;
+    color: #ef4444;
 }
 #adminheader .admin-logout {
     display: -webkit-inline-box;

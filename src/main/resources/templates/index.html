@@ -1,321 +1,194 @@
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="fr" xmlns:th="http://www.thymeleaf.org">
     <head>
         <!-- Meta Tags -->
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="keywords" content="Site keywords here">
-<meta name="description" content="">
-<meta name='copyright' content=''>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="keywords" content="Site keywords here">
+        <meta name="description" content="">
+        <meta name='copyright' content=''>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!-- Title -->
-      <title>ElectroComfort</title>
+        <!-- Title -->
+        <title>ElectroComfort</title>
 
-<!-- Favicon -->
-      <link rel="icon" href="img/favicon.png">
+        <!-- Favicon -->
+        <link rel="icon" href="img/favicon.png">
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<!-- Nice Select CSS -->
-<link rel="stylesheet" href="css/nice-select.css">
-<!-- Font Awesome CSS -->
-      <link rel="stylesheet" href="css/font-awesome.min.css">
-<!-- icofont CSS -->
-      <link rel="stylesheet" href="css/icofont.css">
-<!-- Slicknav -->
-<link rel="stylesheet" href="css/slicknav.min.css">
-<!-- Owl Carousel CSS -->
-      <link rel="stylesheet" href="css/owl-carousel.css">
-<!-- Datepicker CSS -->
-<link rel="stylesheet" href="css/datepicker.css">
-<!-- Animate CSS -->
-      <link rel="stylesheet" href="css/animate.min.css">
-<!-- Magnific Popup CSS -->
-      <link rel="stylesheet" href="css/magnific-popup.css">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- Nice Select CSS -->
+        <link rel="stylesheet" href="css/nice-select.css">
+        <!-- Font Awesome CSS -->
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <!-- icofont CSS -->
+        <link rel="stylesheet" href="css/icofont.css">
+        <!-- Slicknav -->
+        <link rel="stylesheet" href="css/slicknav.min.css">
+        <!-- Owl Carousel CSS -->
+        <link rel="stylesheet" href="css/owl-carousel.css">
+        <!-- Datepicker CSS -->
+        <link rel="stylesheet" href="css/datepicker.css">
+        <!-- Animate CSS -->
+        <link rel="stylesheet" href="css/animate.min.css">
+        <!-- Magnific Popup CSS -->
+        <link rel="stylesheet" href="css/magnific-popup.css">
 
-<!-- Medipro CSS -->
-      <link rel="stylesheet" href="css/normalize.css">
-      <link rel="stylesheet" href="style.css">
-      <link rel="stylesheet" href="css/responsive.css">
-      <link rel="stylesheet" href="/assets/css/admin-header.css">
-<style>
-.notification-badge {
-    position: relative;
-    display: inline-block;
-}
-.notification-badge .badge {
-    position: absolute;
-    top: -1px;
-    right: -10px;
-    background-color: red;
-    color: white;
-    border-radius: 50%;
-    padding: 5px 10px;
-    font-size: 12px;
-    display: inline-block;
-    box-shadow: 0 0 3px rgba(0,0,0,0.3); /* Subtle shadow */
-    animation: pulse 1.5s infinite; /* Animation to draw attention */
-}
-
-/* Pulse animation */
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.1);
-        opacity: 0.8;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-.notification-dropdown ul li a {
-    display: block;
-    padding: 10px;
-    color: #333;
-    text-decoration: none;
-    text-transform: none !important; /* Ensure no transformation */
-    font-family: 'Poppins'; /* Consistent font family */
-}
-.notification-dropdown {
-    display: none;
-    position: absolute;
-    top: 100%; /* Ensure it appears below the badge */
-    right: 0;
-    text-transform: none;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Enhanced shadow */
-    width: 400px; /* Adjusted width for a more compact look */
-    max-height: 400px; /* Increased max height */
-    overflow-y: auto; /* Enable vertical scrolling */
-    z-index: 1000; /* Ensure dropdown appears above other elements */
-    transition: opacity 0.3s ease; /* Smooth transition for appearance */
-    font-family:'Poppins';
-}
-
-/* Show dropdown with transition */
-.notification-dropdown.show {
-    display: block;
-    opacity: 1;
-}
-
-/* List styling */
-.notification-dropdown ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.notification-dropdown li {
-    padding: 12px 15px; /* Increased padding for better spacing */
-    border-bottom: 1px solid #eee; /* Light border between items */
-    transition: background-color 0.3s, color 0.3s; /* Smooth color transition */
-}
-
-/* Last item styling */
-.notification-dropdown li:last-child {
-    border-bottom: none;
-}
-
-/* Hover effect */
-.notification-dropdown li:hover,
-.notification-dropdown li:hover a {
-    background-color: #D3D3D3; /* Lighter gray for hover */
-    color: red; /* Red text color on hover */
-    text-decoration: none; /* Ensure no underline on hover */
-}
-
-
-body {
-	background-image: url("img/fr.png");
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
-	padding-top: 72px; /* clear the fixed admin header */
-}
-		@media (max-width: 768px) {
-	.main-menu {
-		flex-direction: column;
-	}
-	.nav.menu {
-		flex-direction: column;
-		align-items: flex-start;
-	}
-}
-
-.header .main-menu {
-	display: flex;
-	justify-content: flex-start; /* Align items to the start */
-	align-items: center;
-}
-
-.header .nav {
-	display: flex;
-	flex-wrap: nowrap; /* Prevent wrapping */
-}
-
-.header .nav li {
-	margin-right: 5px; /* Adjust margin */
-	padding: 5px 8px;  /* Adjust padding */
-	flex-basis: auto;
-	min-width: 0;
-}
-
-.header .nav li a {
-	white-space: nowrap; /* Prevent text wrapping */
-}
-.btn {
-	padding: 10px 20px; /* Adjust these values to control the size */
-	font-size: 14px;   /* Adjust the font size if necessary */
-	margin-top: -15px;
-	color:white;
-}
-
-.logo{
-	margin-left: 0px;
-}
-.badge.hidden {
-      display: none;
-  }
-
- 
- </style>
-     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const notificationIcon = document.getElementById("notificationIcon");
-            const dropdown = document.getElementById("notificationDropdown");
-
-            notificationIcon.addEventListener("click", function() {
-                dropdown.classList.toggle("show");
-
-                // Mark notifications as read
-                fetch('/markNotificationsAsRead', { method: 'POST' })
-                    .then(response => response.ok && console.log('Notifications marked as read'));
-            });
-        });
-        // Close dropdown if clicked outside
-        document.addEventListener('click', function(event) {
-            if (!notificationDropdown.contains(event.target) && !notificationIcon.contains(event.target)) {
-                notificationDropdown.classList.remove('show');
+        <!-- Medipro CSS -->
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="/assets/css/admin-header.css">
+        <style>
+        body {
+            background-image: url("img/fr.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            padding-top: 72px; /* clear the fixed admin header */
+        }
+        @media (max-width: 768px) {
+            .main-menu {
+                flex-direction: column;
             }
-        });
-    </script>	
-  </head>
-  <body>
+            .nav.menu {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
 
-<!-- Preloader -->
-      <div class="preloader">
-          <div class="loader">
-              <div class="loader-outter"></div>
-              <div class="loader-inner"></div>
+        .header .main-menu {
+            display: flex;
+            justify-content: flex-start; /* Align items to the start */
+            align-items: center;
+        }
 
-              <div class="indicator"> 
-                  <svg width="16px" height="12px">
-                      <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
-                      <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
-                  </svg>
-              </div>
-          </div>
-      </div>
-      <!-- End Preloader -->
+        .header .nav {
+            display: flex;
+            flex-wrap: nowrap; /* Prevent wrapping */
+        }
 
+        .header .nav li {
+            margin-right: 5px; /* Adjust margin */
+            padding: 5px 8px;  /* Adjust padding */
+            flex-basis: auto;
+            min-width: 0;
+        }
 
-<!-- Shared admin header -->
-<div th:replace="~{fragments/adminheader :: adminheadernav('dashboard')}"></div>
-<section class="slider">
-	<div class="hero-slider">
-		<!-- Start Single Slider -->
-		<div class="single-slider" >
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-7">
-						<div class="text">
-							<h1>Votre outil <span>Complet</span> Pour la gestion du<span> stock</span></h1>
-							<p>oraganisez, controler et prosperer. </p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Start Single Slider -->
-		<div class="single-slider" >
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-7">
-						<div class="text">
-							<h1>Simplifier la <span>gestion</span> Maximiser <span>L'efficacite !</span></h1>
-							<p>gestion de stock, clients et articles. </p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Start End Slider -->
-	</div>
-<section>
+        .header .nav li a {
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+        .btn {
+            padding: 10px 20px; /* Adjust these values to control the size */
+            font-size: 14px;   /* Adjust the font size if necessary */
+            margin-top: -15px;
+            color:white;
+        }
 
+        .logo{
+            margin-left: 0px;
+        }
+        .badge.hidden {
+            display: none;
+        }
+        </style>
+    </head>
+    <body>
 
+        <!-- Preloader -->
+        <div class="preloader">
+            <div class="loader">
+                <div class="loader-outter"></div>
+                <div class="loader-inner"></div>
 
+                <div class="indicator"> 
+                    <svg width="16px" height="12px">
+                        <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                        <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <!-- End Preloader -->
 
+        <!-- Shared admin header -->
+        <div th:replace="~{fragments/adminheader :: adminheadernav('dashboard')}"></div>
+        
+        <section class="slider">
+            <div class="hero-slider">
+                <!-- Start Single Slider -->
+                <div class="single-slider" >
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <div class="text">
+                                    <h1>Votre outil <span>Complet</span> Pour la gestion du<span> stock</span></h1>
+                                    <p>organisez, contrôlez et prospérez. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Start Single Slider -->
+                <div class="single-slider" >
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <div class="text">
+                                    <h1>Simplifier la <span>gestion</span> Maximiser <span>L'efficacité !</span></h1>
+                                    <p>gestion de stock, clients et articles. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Start End Slider -->
+            </div>
+        </section>
 
-
-
-
-
-
-
-
-
-<!-- jquery Min JS -->
-      <script src="js/jquery.min.js"></script>
-<!-- jquery Migrate JS -->
-<script src="js/jquery-migrate-3.0.0.js"></script>
-<!-- jquery Ui JS -->
-<script src="js/jquery-ui.min.js"></script>
-<!-- Easing JS -->
-      <script src="js/easing.js"></script>
-<!-- Color JS -->
-<script src="js/colors.js"></script>
-<!-- Popper JS -->
-<script src="js/popper.min.js"></script>
-<!-- Bootstrap Datepicker JS -->
-<script src="js/bootstrap-datepicker.js"></script>
-<!-- Jquery Nav JS -->
-      <script src="js/jquery.nav.js"></script>
-<!-- Slicknav JS -->
-<script src="js/slicknav.min.js"></script>
-<!-- ScrollUp JS -->
-      <script src="js/jquery.scrollUp.min.js"></script>
-<!-- Niceselect JS -->
-<script src="js/niceselect.js"></script>
-<!-- Tilt Jquery JS -->
-<script src="js/tilt.jquery.min.js"></script>
-<!-- Owl Carousel JS -->
-      <script src="js/owl-carousel.js"></script>
-<!-- counterup JS -->
-<script src="js/jquery.counterup.min.js"></script>
-<!-- Steller JS -->
-<script src="js/steller.js"></script>
-<!-- Wow JS -->
-<script src="js/wow.min.js"></script>
-<!-- Magnific Popup JS -->
-<script src="js/jquery.magnific-popup.min.js"></script>
-<!-- Counter Up CDN JS -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-<!-- Bootstrap JS -->
-<script src="js/bootstrap.min.js"></script>
-<!-- Main JS -->
-		<script src="js/main.js"></script>
+        <!-- jquery Min JS -->
+        <script src="js/jquery.min.js"></script>
+        <!-- jquery Migrate JS -->
+        <script src="js/jquery-migrate-3.0.0.js"></script>
+        <!-- jquery Ui JS -->
+        <script src="js/jquery-ui.min.js"></script>
+        <!-- Easing JS -->
+        <script src="js/easing.js"></script>
+        <!-- Color JS -->
+        <script src="js/colors.js"></script>
+        <!-- Popper JS -->
+        <script src="js/popper.min.js"></script>
+        <!-- Bootstrap Datepicker JS -->
+        <script src="js/bootstrap-datepicker.js"></script>
+        <!-- Jquery Nav JS -->
+        <script src="js/jquery.nav.js"></script>
+        <!-- Slicknav JS -->
+        <script src="js/slicknav.min.js"></script>
+        <!-- ScrollUp JS -->
+        <script src="js/jquery.scrollUp.min.js"></script>
+        <!-- Niceselect JS -->
+        <script src="js/niceselect.js"></script>
+        <!-- Tilt Jquery JS -->
+        <script src="js/tilt.jquery.min.js"></script>
+        <!-- Owl Carousel JS -->
+        <script src="js/owl-carousel.js"></script>
+        <!-- counterup JS -->
+        <script src="js/jquery.counterup.min.js"></script>
+        <!-- Steller JS -->
+        <script src="js/steller.js"></script>
+        <!-- Wow JS -->
+        <script src="js/wow.min.js"></script>
+        <!-- Magnific Popup JS -->
+        <script src="js/jquery.magnific-popup.min.js"></script>
+        <!-- Counter Up CDN JS -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- Main JS -->
+        <script src="js/main.js"></script>
     </body>
 </html>

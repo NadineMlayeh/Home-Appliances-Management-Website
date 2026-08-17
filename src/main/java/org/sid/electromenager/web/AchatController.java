@@ -75,7 +75,7 @@ public class AchatController {
         // Check stock availability
         int availableQuantity = article.getQuantite();
         if (achat.getQuantite() > availableQuantity) {
-            throw new RuntimeException("Stock insuffisant pour l'article: " + articleId);
+            return "redirect:/addAchat?error=Stock+insuffisant+pour+cet+article+!";
         }
 
         // Update the article's quantity
@@ -83,22 +83,22 @@ public class AchatController {
         achatRepository.save(achat);
         
         handleArticleNotifications(article);
-        return "redirect:/ListAchats";
+        return "redirect:/ListAchats?msg=saved_achat";
     }
     private void handleArticleNotifications(Article article) {
-        // Check if the quantity is now low
         if (article.getQuantite() <= 2) {
             String message = String.format("La quantite de %s est faible (quantite actuelle: %d) !", article.getName(), article.getQuantite());
-            List<Notification> existingNotifications = notificationRepository.findByMessageContaining(article.getName());
-            if (existingNotifications.isEmpty()) {
+            List<Notification> existingNotifications = notificationRepository.findByArticleId(article.getId());
+            if (existingNotifications == null || existingNotifications.isEmpty()) {
                 Notification notification = new Notification(message);
+                notification.setArticle(article);
                 notificationRepository.save(notification);
             }
+            return;
         }
 
-        // Remove notifications if the quantity is above threshold
-        if (article.getQuantite() > 2) {
-            List<Notification> notificationsToRemove = notificationRepository.findByMessageContaining(article.getName());
+        List<Notification> notificationsToRemove = notificationRepository.findByArticleId(article.getId());
+        if (notificationsToRemove != null && !notificationsToRemove.isEmpty()) {
             notificationRepository.deleteAll(notificationsToRemove);
         }
     }
@@ -127,8 +127,12 @@ public class AchatController {
 
     @GetMapping(path = "/deleteAchat")
     public String delete(Long id) {
-        achatRepository.deleteById(id);
-        return "redirect:/ListAchats";
+        try {
+            achatRepository.deleteById(id);
+            return "redirect:/ListAchats?msg=deleted_achat";
+        } catch (Exception e) {
+            return "redirect:/ListAchats?error=Impossible+de+supprimer+cet+achat+!";
+        }
     }
 
     @GetMapping("/editAchat")
@@ -219,7 +223,7 @@ public class AchatController {
 
 
         achatRepository.save(achat);
-        return "redirect:/ListAchats";
+        return "redirect:/ListAchats?msg=saved_payment";
     }
 
 

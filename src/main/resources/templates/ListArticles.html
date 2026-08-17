@@ -9,11 +9,12 @@
         <link rel="stylesheet" href="/assets/css/admin-header.css">
     <style>
 	    body{
-	    background: url('img2.png') no-repeat;
-	    background-size: cover; /* Ensure the image covers the entire body */
-	    background-repeat: no-repeat; /* Prevent the image from repeating */
-	    background-position: center;
-	    padding-top: 74px; /* clear the fixed admin header */
+	        background-image: url('/img/fr.png');
+	        background-size: cover;
+	        background-repeat: no-repeat;
+	        background-position: center;
+	        background-attachment: fixed;
+	        padding-top: 74px;
 	    }
         *{
 
@@ -172,23 +173,30 @@
                         <tr th:each="a : ${ListArticles}">
                             <td th:text="${a.id}"></td>
                             <td th:text="${a.name}"></td>
-                            <td th:text="${a.prixUnitaire}"></td>
-                            <td th:text="${a.taxeTVA}"></td>
-                            <td th:text="${a.benefice}"></td>
-                            <td th:text="${a.prixVente}"></td>
-                            <td th:text="${a.quantite}"></td>
+                            <td th:text="${a.prixUnitaire != null ? #numbers.formatDecimal(a.prixUnitaire, 1, 2) + ' TND' : '-'}"></td>
+                            <td th:text="${a.taxeTVA != null ? #numbers.formatDecimal(a.taxeTVA, 1, 2) + ' TND' : '-'}"></td>
+                            <td th:text="${a.benefice != null ? #numbers.formatDecimal(a.benefice, 1, 2) + ' TND' : '-'}"></td>
+                            <td><b th:text="${a.prixVente != null ? #numbers.formatDecimal(a.prixVente, 1, 2) + ' TND' : '-'}"></b></td>
                             <td>
-                                <a onclick="return confirm('Etes-vous sur de vouloir supprimer cet article ?')" class="btn btn-danger" th:href="@{/deleteArticle(id=${a.id})}"><i class="fas fa-trash-alt"></i> Effacer</a>
+                                <span th:classappend="${a.quantite <= 2} ? 'badge badge-danger' : 'badge badge-success'" 
+                                      th:text="${a.quantite}"></span>
+                            </td>
+                            <td>
+                                <a data-confirm="Etes-vous sur de vouloir supprimer cet article ?" class="btn btn-danger btn-sm" th:href="@{/deleteArticle(id=${a.id})}"><i class="fas fa-trash-alt"></i> Effacer</a>
                             </td> 
                             <td> 
-                              <a class="btn btn-warning" th:href="@{/editArticle(id=${a.id})}"><i class="fas fa-pen"></i> Modifier</a>
+                              <a class="btn btn-warning btn-sm" th:href="@{/editArticle(id=${a.id})}"><i class="fas fa-pen"></i> Modifier</a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <ul class="pagination justify-content-center mt-4">
+                <div class="text-center py-4 text-muted" th:if="${ListArticles == null || ListArticles.isEmpty()}">
+                    <i class="fas fa-box-open fa-3x mb-3" style="color: #cbd5e1;"></i>
+                    <p class="mb-0">Aucun article trouvé.</p>
+                </div>
+                <ul class="pagination justify-content-center mt-4" th:if="${pages != null && pages.length > 1}">
                     <li th:each="page, status : ${pages}" class="page-item" th:classappend="${status.index == currentpage ? 'active' : ''}">
-                        <a class="page-link" th:href="@{/ListArticles(page=${status.index}, keyword=${keyword})}" th:text="${status.index}"></a>
+                        <a class="page-link" th:href="@{/ListArticles(page=${status.index}, keyword=${keyword})}" th:text="${status.index + 1}"></a>
                     </li>
                 </ul>
             </div>

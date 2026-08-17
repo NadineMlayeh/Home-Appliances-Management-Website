@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Ajuster la quantite</title>
+    <title>Modifier la quantité</title>
     <!-- Font Awesome and Boxicons for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
@@ -24,9 +24,11 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: url('back2.png') no-repeat;
+            background-image: url('/img/fr.png');
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             padding-top: 70px; /* clear the fixed admin header */
         }
 
@@ -147,19 +149,19 @@
 <body>
     <div th:replace="~{fragments/adminheader :: adminheadernav('articles')}"></div>
     <div class="wrapper">
-        <h1>Ajuster la quantite</h1>
+        <h1>Modifier la quantité</h1>
         <form th:action="@{/updateQuantity}" method="post">
             <input type="hidden" name="articleId" th:value="${article.id}"/>
             
             <div class="input-field">
                 <input type="text" id="articleName" th:value="${article.name}" readonly/>
-                <label for="articleName"><b>Nom article</b></label>
+                <label for="articleName"><b>Nom de l'article</b></label>
                 
             </div><br>
 
             <div class="input-field">
                 <input type="number" id="quantity" name="quantity" th:value="${article.quantite}" min="0"/>
-                <label for="quantity"><b>Quantite actuelle</b></label>
+                <label for="quantity"><b>Quantité actuelle</b></label>
                 
             </div>
             <div>

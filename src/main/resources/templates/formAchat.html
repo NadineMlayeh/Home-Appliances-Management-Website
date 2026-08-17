@@ -59,9 +59,11 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: url('ele.jpg') no-repeat;
+            background-image: url('/img/fr.png');
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             padding-top: 70px; /* clear the fixed admin header */
         }
 			
@@ -262,14 +264,14 @@
             <i class='bx bxs-user'></i>
                 <label for="client">Client :</label>
                 <select id="client" name="clientId" class="form-control" required>
-                    <option th:each="client : ${clients}" th:value="${client.id}" th:text="${client.id} + ' - ' + ${client.nom}"></option>
+                    <option th:each="client : ${clients}" th:value="${client.id}" th:text="${client.nom} + ' ' + (${client.prenom != null} ? ${client.prenom} : '') + ' — ' + (${client.numTelephone != null} ? ${client.numTelephone} : 'Sans Tél')"></option>
                 </select>
             </div>
             <div class="form-group">
             <i class='bx bx-package'></i>
                 <label for="article">Article :</label>
                 <select id="article" name="articleId" class="form-control" required onchange="calculateMontant()">
-                    <option th:each="article : ${articles}" th:value="${article.id}" th:text="${article.id} + ' - ' + ${article.name}"></option>
+                    <option th:each="article : ${articles}" th:value="${article.id}" th:text="${article.name} + ' — Stock: ' + ${article.quantite} + ' — ' + ${#numbers.formatDecimal(article.prixVente, 1, 2)} + ' TND'"></option>
                 </select>
             </div>
             <div class="form-group">

@@ -20,6 +20,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.sid.electromenager.dao.ClientRepository;
+import org.sid.electromenager.dao.AchatRepository;
+
 @Controller
 public class ArticleController {
 
@@ -27,6 +30,10 @@ public class ArticleController {
     private ArticleRepository articleRepository;
     @Autowired
     private NotificationRepository notificationRepository;
+    @Autowired
+    private ClientRepository clientRepository;
+    @Autowired
+    private AchatRepository achatRepository;
     
     @GetMapping("/addArticle")
     public String showArticleForm(Model model) {
@@ -42,6 +49,12 @@ public class ArticleController {
         model.addAttribute("unreadCount", unreadCount);
         model.addAttribute("notifications", notifications);
         model.addAttribute("article", new Article());
+
+        model.addAttribute("totalClients", clientRepository.count());
+        model.addAttribute("totalArticles", articleRepository.count());
+        model.addAttribute("totalAchats", achatRepository.count());
+        model.addAttribute("lowStockCount", articleRepository.findAll().stream().filter(a -> a.getQuantite() <= 2).count());
+
         return "index";
     }
 
@@ -70,21 +83,20 @@ public class ArticleController {
         // Check quantity and add notification if needed
         if (article.getQuantite() <= 2) {
             String message = String.format("La quantite du %s est faible !(il reste : %d)", article.getName(), article.getQuantite());
-            Notification notification = new Notification(message);
-            notification.setArticle(article);
-            notificationRepository.save(notification);
+            List<Notification> existingNotifications = notificationRepository.findByArticleId(article.getId());
+            if (existingNotifications == null || existingNotifications.isEmpty()) {
+                Notification notification = new Notification(message);
+                notification.setArticle(article);
+                notificationRepository.save(notification);
+            }
         }
         if (article.getQuantite() > 2) {
-            // Find notifications related to the article
-            List<Notification> notifications = notificationRepository.findAll();
-            List<Notification> notificationsToRemove = notifications.stream()
-                .filter(n -> n.getMessage().contains(article.getName()))
-                .collect(Collectors.toList());
-
-            // Delete the notifications from the database
-            notificationRepository.deleteAll(notificationsToRemove);
+            List<Notification> notificationsToRemove = notificationRepository.findByArticleId(article.getId());
+            if (notificationsToRemove != null && !notificationsToRemove.isEmpty()) {
+                notificationRepository.deleteAll(notificationsToRemove);
+            }
         }
-        return "redirect:/ListArticles";
+        return "redirect:/ListArticles?msg=saved_article";
     }
 
     @GetMapping("/ListArticles")
@@ -104,8 +116,16 @@ public class ArticleController {
 
     @GetMapping(path = "/deleteArticle")
     public String delete (Long id) {
-    articleRepository.deleteById(id);
-    return "redirect:/ListArticles";
+        try {
+            List<Notification> notifications = notificationRepository.findByArticleId(id);
+            if (notifications != null && !notifications.isEmpty()) {
+                notificationRepository.deleteAll(notifications);
+            }
+            articleRepository.deleteById(id);
+            return "redirect:/ListArticles?msg=deleted_article";
+        } catch (Exception e) {
+            return "redirect:/ListArticles?error=Impossible+de+supprimer+cet+article+car+il+est+lie+a+des+ventes+existantes+!";
+        }
     }
     @GetMapping("/editArticle")
     public String editPatient(Model model, Long id) {
@@ -134,8 +154,7 @@ public class ArticleController {
             // Delete the related notifications
             notificationRepository.deleteAll(notifications);
         }        
-        // Optionally, redirect to a page with a success message or refresh the notifications
-        return "redirect:/index"; // Adjust the redirect as needed
+        return "redirect:/ListArticles?msg=updated_quantity";
     }
 
 }

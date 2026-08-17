@@ -7,8 +7,13 @@
     <link rel="stylesheet" href="/assets/css/admin-header.css">
     <style>
 		body {
-		    background-color: #eef2f7;
+		    background-image: url('/img/fr.png');
+		    background-size: cover;
+		    background-position: center;
+		    background-repeat: no-repeat;
+		    background-attachment: fixed;
 		    font-family: "Poppins", sans-serif;
+		    min-height: 100vh;
 		}
 	    *{
             font-family: "Poppins", sans-serif;
@@ -289,33 +294,65 @@
 
 <script>
     function handleClick(trancheId, trancheValue) {
-        if (confirm('Etes-vous sur de vouloir marquer cette tranche comme payee ?')) {
-            document.getElementById(trancheId).value = 0;
+        window.showConfirmModal({
+            title: 'Confirmation de paiement',
+            message: 'Êtes-vous sûr de vouloir marquer cette tranche comme payée ?',
+            confirmText: 'Confirmer',
+            cancelText: 'Annuler',
+            confirmBtnClass: 'modal-btn-primary',
+            iconClass: 'modal-badge-primary',
+            iconHtml: '<i class="fas fa-credit-card"></i>'
+        }).then(function(confirmed) {
+            if (confirmed) {
+                document.getElementById(trancheId).value = 0;
 
-            const button = document.getElementById(trancheId + '-button');
-            button.disabled = true;
-            button.textContent = 'Paye';
-            button.classList.remove('btn-secondary');
-            button.classList.add('btn-success');
+                const button = document.getElementById(trancheId + '-button');
+                button.disabled = true;
+                button.textContent = 'Payé';
+                button.classList.remove('btn-secondary');
+                button.classList.add('btn-success');
 
-            const montantRestantElement = document.getElementById('montantRestant');
-            let montantRestant = parseFloat(montantRestantElement.value);
-            montantRestant -= trancheValue;
-            montantRestantElement.value = montantRestant.toFixed(2);
-        }
+                const montantRestantElement = document.getElementById('montantRestant');
+                let montantRestant = parseFloat(montantRestantElement.value);
+                montantRestant -= trancheValue;
+                montantRestantElement.value = montantRestant.toFixed(2);
+
+                window.showToast({
+                    type: 'success',
+                    title: 'Tranche réglée',
+                    message: 'La tranche a été marquée comme payée.'
+                });
+            }
+        });
     }
     function payComptant()
     {
-        const button = document.getElementById('ct-button');
-        button.disabled = true;
-        button.textContent = 'Paye';
-        button.classList.remove('btn-secondary');
-        button.classList.add('btn-success');
+        window.showConfirmModal({
+            title: 'Confirmation de paiement',
+            message: 'Êtes-vous sûr de vouloir marquer la totalité du montant comme payé ?',
+            confirmText: 'Confirmer',
+            cancelText: 'Annuler',
+            confirmBtnClass: 'modal-btn-primary',
+            iconClass: 'modal-badge-primary',
+            iconHtml: '<i class="fas fa-check-circle"></i>'
+        }).then(function(confirmed) {
+            if (confirmed) {
+                const button = document.getElementById('ct-button');
+                button.disabled = true;
+                button.textContent = 'Payé';
+                button.classList.remove('btn-secondary');
+                button.classList.add('btn-success');
 
-        const montantRestantElement = document.getElementById('montantRestant');
-        let montantRestant = parseFloat(montantRestantElement.value);
-        montantRestant -= montantRestant;
-        montantRestantElement.value = montantRestant.toFixed(2);
+                const montantRestantElement = document.getElementById('montantRestant');
+                montantRestantElement.value = (0).toFixed(2);
+
+                window.showToast({
+                    type: 'success',
+                    title: 'Paiement effectué',
+                    message: 'Le paiement au comptant a été validé.'
+                });
+            }
+        });
     }
 </script>
 </body>

@@ -1,43 +1,32 @@
 <!doctype html>
-<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<html class="no-js" lang="fr" xmlns:th="http://www.thymeleaf.org">
     <head>
         <!-- Meta Tags -->
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="keywords" content="Site keywords here">
-		<meta name="description" content="">
-		<meta name='copyright' content=''>
+		<meta name="keywords" content="ElectroComfort, contact, electromenager">
+		<meta name="description" content="Contactez ElectroComfort pour toute question ou remarque.">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		
 		<!-- Title -->
-        <title>ElectroComfort</title>
+        <title>Contactez-nous - ElectroComfort</title>
 		
 		<!-- Favicon -->
 		<link rel="icon" href="/img/favicon.png">
 		
 		<!-- Google Fonts -->
-		<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
-		<!-- Nice Select CSS -->
-		<link rel="stylesheet" href="/css/nice-select.css">
 		<!-- Font Awesome CSS -->
-		<link rel="stylesheet" href="/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 		<!-- icofont CSS -->
 		<link rel="stylesheet" href="/css/icofont.css">
-		<!-- Slicknav -->
-		<link rel="stylesheet" href="/css/slicknav.min.css">
-		<!-- Owl Carousel CSS -->
-		<link rel="stylesheet" href="/css/owl-carousel.css">
-		<!-- Datepicker CSS -->
-		<link rel="stylesheet" href="/css/datepicker.css">
 		<!-- Animate CSS -->
 		<link rel="stylesheet" href="/css/animate.min.css">
-		<!-- Magnific Popup CSS -->
-		<link rel="stylesheet" href="/css/magnific-popup.css">
         
-		<!-- Medipro CSS -->
+		<!-- Styles -->
 		<link rel="stylesheet" href="/css/normalize.css">
 		<link rel="stylesheet" href="/style.css">
 		<link rel="stylesheet" href="/css/responsive.css">
@@ -45,273 +34,237 @@
 		<!-- Shared site header -->
 		<link rel="stylesheet" href="/assets/css/header.css">
 	<style>
-		.contact-us .inner{
-	box-shadow: 0px 0px 10px #00000024;
-	border-radius: 5px;
-	overflow:hidden;
-}
-.contact-us .contact-us-left{
-    width: 100%;
-    height: 100%;
-}
-.contact-us .contact-us-form{
-	padding:50px 40px;
-	background: #ffffff;
-	height: 100%;
-}
-.contact-us .contact-us-form h2 {
-	position: relative;
-	font-size: 32px;
-	color: #333;
-	font-weight: 600;
-	line-height: 27px;
-	text-transform: capitalize;
-	margin-bottom: 12px;
-	padding-bottom: 20px;
-	text-align: left;
-}
-.contact-us .contact-us-form h2:before{
-	position:absolute;
-	content:"";
-	left:0;
-	bottom:0;
-	height:2px;
-	width:50px;
-	background:#508cc9;
-}
-.contact-us .contact-us-form p {
-	font-size: 14px;
-	color: #333;
-	font-weight: 400;
-	text-align: left;
-	margin-bottom:50px;
-}
-.contact-us .form {
-	margin-top: 30px;
-	
-}
-.contact-us .form .form-group {
-	margin-bottom: 20px;
-}
-.contact-us .form .form-group input,
-.contact-us .form .form-group textarea {
-	width: 100%;
-	border: 2px solid #e3eaf1;
-	background: #f7fafc;
-	box-shadow: none;
-	color: #444;
-	font-size: 14px;
-	font-weight: 400;
-	text-transform: capitalize;
-	-webkit-transition: border-color .3s ease, box-shadow .3s ease, background-color .3s ease;
-	-moz-transition: border-color .3s ease, box-shadow .3s ease, background-color .3s ease;
-	-o-transition: border-color .3s ease, box-shadow .3s ease, background-color .3s ease;
-	transition: border-color .3s ease, box-shadow .3s ease, background-color .3s ease;
-}
-.contact-us .form .form-group input {
-	height: 50px;
-	border-radius: 10px;
-	padding: 0 18px;
-}
-.contact-us .form .form-group textarea {
-	height: 120px;
-	border-radius: 10px;
-	padding: 15px 18px;
-	resize: vertical;
-}
-.contact-us .form .form-group input:hover,
-.contact-us .form .form-group textarea:hover {
-	border-color: #bcd6ef;
-}
-.contact-us .form .form-group input:focus,
-.contact-us .form .form-group textarea:focus {
-	outline: none;
-	border-color: #1A76D1;
-	background: #fff;
-	box-shadow: 0 8px 20px rgba(26, 118, 209, 0.12);
-}
-.contact-us .form .form-group input::placeholder,
-.contact-us .form .form-group textarea::placeholder {
-	color: #93a4b7;
-	font-weight: 400;
-}
-.contact-us .form .form-group.login-btn {
-	margin: 0;
-	margin-top: 6px;
-}
-.contact-us .form button {
-	border: none;
-}
-.contact-us .form .btn {
-	display: inline-block;
-	margin-right: 10px;
-	color: #fff;
-	line-height: 20px;
-	width: 100%;
-	padding: 15px 30px;
-	font-size: 15px;
-	font-weight: 600;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-	border-radius: 50px;
-	background: #1A76D1;
-	background: -webkit-linear-gradient(135deg, #1A76D1 0%, #0f5bab 100%);
-	background: -moz-linear-gradient(135deg, #1A76D1 0%, #0f5bab 100%);
-	background: linear-gradient(135deg, #1A76D1 0%, #0f5bab 100%);
-	box-shadow: 0 8px 20px rgba(26, 118, 209, 0.35);
-	-webkit-transition: all .3s ease;
-	-moz-transition: all .3s ease;
-	-o-transition: all .3s ease;
-	transition: all .3s ease;
-}
-.contact-us .form .btn:hover{
-	color: #fff;
-	background: #0f5bab;
-	background: -webkit-linear-gradient(135deg, #0f5bab 0%, #0a3c78 100%);
-	background: -moz-linear-gradient(135deg, #0f5bab 0%, #0a3c78 100%);
-	background: linear-gradient(135deg, #0f5bab 0%, #0a3c78 100%);
-	-webkit-transform: translateY(-2px);
-	-moz-transform: translateY(-2px);
-	transform: translateY(-2px);
-	box-shadow: 0 12px 26px rgba(26, 118, 209, 0.45);
-}
-.contact-us .contact-us-form .checkbox {
-	text-align: left;
-	margin: 0;
-	margin-top: 20px;
-	display:inline-block;
-	
-}
-.contact-us .contact-us-form .checkbox label {
-	font-size: 14px;
-	font-weight: 400;
-	color: #333;
-	position: relative;
-	padding-left: 20px;
-}
-.contact-us .contact-us-form .checkbox label:hover{
-	cursor:pointer;
-}
-.contact-us .contact-us-form .checkbox label input{
-	display:none;
-}
-.contact-us .contact-us-form .checkbox label::before {
-	position: absolute;
-	content: "";
-	left: 0;
-	top: 5px;
-	width: 15px;
-	height: 15px;
-	border: 1px solid #1A76D1;
-	border-radius: 100%;
-}
-.contact-us .contact-us-form .checkbox label::after {
-	position: relative;
-	content: "";
-	width: 7px;
-	height: 7px;
-	left: -16px;
-	top: -15px;
-	opacity: 0;
-	visibility: hidden;
-	transform: scale(0);
-	-webkit-transition: all 0.4s ease;
-	-moz-transition: all 0.4s ease;
-	transition: all 0.4s ease;
-	display: block;
-	font-size: 9px;
-	background: #1A76D1;
-	border-radius: 100%;
-}
-.contact-us .contact-us-form .checkbox label.checked::after{
-	opacity:1;
-	visibility:visible;
-	transform:scale(1);
-}
-.contact-us .contact-info{
-	margin-top:50px;
-}
-.contact-us .single-info {
-	background: #1a76d1;
-	padding: 40px 60px;
-	height: 150px;
-	border-radius: 10px;
-	position:relative;
-	-webkit-transition: all .3s ease-out 0s;
-    -moz-transition: all .3s ease-out 0s;
-    -ms-transition: all .3s ease-out 0s;
-    -o-transition: all .3s ease-out 0s;
-    transition: all .3s ease-out 0s;
-}
-.contact-us .single-info:before{
-	position: absolute;
-    z-index: -1;
-    content: '';
-    bottom: -10px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    width: 80%;
-    height: 90%;
-    background:#1A76D1;
-    opacity: 0;
-    filter: blur(10px);
-    -webkit-transition: all .3s ease-out 0s;
-    -moz-transition: all .3s ease-out 0s;
-    -ms-transition: all .3s ease-out 0s;
-    -o-transition: all .3s ease-out 0s;
-    transition: all .3s ease-out 0s;
-}
-.contact-us .single-info:hover:before{
-	opacity: 0.8;
-}
-.contact-us .single-info:hover{
-	transform: translateY(-5px);
-}
-.contact-us .single-info i{
-	font-size:42px;
-	color:#fff;
-	position:absolute;
-	left:40px;
-}
-.contact-us .single-info .content {
-	margin-left: 45px;
-}
-.contact-us .single-info .content h3{
-	color:#fff;
-	font-size:18px;
-	font-weight:600;
-	
-}
-.contact-us .single-info .content p{
-	color:#fff;
-	margin-top:5px;
-}/* Google Map */
-.contact-us #myMap {
-	height: 100%;
-	width: 100%;
-}
-.breadcrumbs.overlay::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(65, 141, 218, 0.625); /* Adjust the opacity */
-    z-index: 1;
-}
-.breadcrumbs .bread-inner h2,.bread-list {
-    color: white;z-index: 3;padding: 10px 20px;position: relative;
-}
-#mMap {
-    width: 100%;
-    height: 100%; /* Increase the height for a longer map */
-    border: 3px solid #1a76d1; /* Add a black border around the map */
-    border-radius: 8px;
-   /* Ensures a decent height for the map */
-}
+		/* --------------------------------------------------------------------------
+		   Pro Contact Page Styling
+		   -------------------------------------------------------------------------- */
+		.breadcrumbs {
+			position: relative;
+			padding: 70px 0;
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+		.breadcrumbs.overlay::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(135deg, rgba(26, 118, 209, 0.85) 0%, rgba(15, 91, 171, 0.90) 100%);
+			z-index: 1;
+		}
+		.breadcrumbs .bread-inner {
+			position: relative;
+			z-index: 2;
+			text-align: center;
+		}
+		.breadcrumbs .bread-inner h2 {
+			color: #ffffff;
+			font-size: 36px;
+			font-weight: 700;
+			margin-bottom: 10px;
+			text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+		}
+		.bread-list {
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		.bread-list li, .bread-list li a {
+			color: rgba(255, 255, 255, 0.9);
+			font-size: 15px;
+			font-weight: 500;
+			text-decoration: none;
+		}
+		.bread-list li.active {
+			color: #ffffff;
+			font-weight: 600;
+		}
 
+		/* Contact Wrapper Card */
+		.contact-us.section {
+			padding: 60px 0 80px;
+			background: #f8fafc;
+		}
+		.contact-us .inner {
+			background: #ffffff;
+			border-radius: 18px;
+			box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08), 0 2px 8px rgba(15, 23, 42, 0.04);
+			overflow: hidden;
+			border: 1px solid #e2e8f0;
+		}
+		.contact-us .contact-us-left {
+			width: 100%;
+			height: 100%;
+			min-height: 440px;
+		}
+		#mMap {
+			width: 100%;
+			height: 100%;
+			min-height: 440px;
+			border: none;
+			border-radius: 0;
+		}
+
+		/* Contact Form Container */
+		.contact-us .contact-us-form {
+			padding: 45px 40px;
+			background: #ffffff;
+		}
+		.form-header-badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			background: #eff6ff;
+			color: #1A76D1;
+			padding: 6px 14px;
+			border-radius: 20px;
+			font-size: 13px;
+			font-weight: 600;
+			margin-bottom: 12px;
+		}
+		.contact-us .contact-us-form h2 {
+			font-size: 28px;
+			color: #0f172a;
+			font-weight: 700;
+			margin-bottom: 10px;
+		}
+		.contact-us .contact-us-form p {
+			font-size: 14.5px;
+			color: #64748b;
+			margin-bottom: 30px;
+			line-height: 1.5;
+		}
+
+		/* Form Inputs with Icons */
+		.contact-input-field {
+			position: relative;
+			margin-bottom: 22px;
+		}
+		.contact-input-field i {
+			position: absolute;
+			left: 16px;
+			top: 17px;
+			font-size: 16px;
+			color: #94a3b8;
+			transition: color 0.3s ease;
+		}
+		.contact-input-field input,
+		.contact-input-field textarea {
+			width: 100%;
+			border: 2px solid #e2e8f0;
+			background: #f8fafc;
+			color: #1e293b;
+			font-size: 14.5px;
+			font-weight: 400;
+			border-radius: 10px;
+			padding: 13px 16px 13px 44px;
+			transition: all 0.25s ease;
+			outline: none;
+			font-family: 'Poppins', sans-serif;
+		}
+		.contact-input-field textarea {
+			height: 130px;
+			padding-top: 14px;
+			resize: vertical;
+		}
+		.contact-input-field input:focus,
+		.contact-input-field textarea:focus {
+			border-color: #1A76D1;
+			background: #ffffff;
+			box-shadow: 0 0 0 4px rgba(26, 118, 209, 0.12);
+		}
+		.contact-input-field input:focus ~ i,
+		.contact-input-field textarea:focus ~ i {
+			color: #1A76D1;
+		}
+
+		/* Submit Button */
+		.submit-btn-wrapper {
+			margin-top: 10px;
+		}
+		.btn-submit-contact {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			gap: 10px;
+			width: 100%;
+			padding: 15px 30px;
+			font-size: 15px;
+			font-weight: 600;
+			letter-spacing: 0.5px;
+			color: #ffffff;
+			border: none;
+			border-radius: 10px;
+			background: linear-gradient(135deg, #1A76D1 0%, #0f5bab 100%);
+			box-shadow: 0 8px 20px rgba(26, 118, 209, 0.3);
+			cursor: pointer;
+			transition: all 0.3s ease;
+		}
+		.btn-submit-contact:hover {
+			background: linear-gradient(135deg, #0f5bab 0%, #0a3c78 100%);
+			box-shadow: 0 12px 25px rgba(26, 118, 209, 0.42);
+			transform: translateY(-2px);
+		}
+
+		/* Contact Info Cards Bottom Row */
+		.contact-info {
+			margin-top: 40px;
+		}
+		.single-info-card {
+			background: #ffffff;
+			border-radius: 14px;
+			padding: 26px 24px;
+			display: flex;
+			align-items: center;
+			gap: 18px;
+			border: 1px solid #e2e8f0;
+			box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
+			transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+			height: 100%;
+		}
+		.single-info-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 15px 30px rgba(26, 118, 209, 0.14);
+			border-color: #bfdbfe;
+		}
+		.info-icon-badge {
+			width: 54px;
+			height: 54px;
+			border-radius: 12px;
+			background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+			color: #1A76D1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 22px;
+			flex-shrink: 0;
+			transition: transform 0.3s ease;
+		}
+		.single-info-card:hover .info-icon-badge {
+			transform: scale(1.08);
+			background: linear-gradient(135deg, #1A76D1 0%, #0f5bab 100%);
+			color: #ffffff;
+		}
+		.info-card-text {
+			display: flex;
+			flex-direction: column;
+		}
+		.info-card-text h3 {
+			font-size: 16px;
+			font-weight: 700;
+			color: #0f172a;
+			margin: 0 0 4px;
+		}
+		.info-card-text p {
+			font-size: 13.5px;
+			color: #64748b;
+			margin: 0;
+		}
 	</style>	
     </head>
     <body>
@@ -334,29 +287,17 @@
             </div>
         </div>
         <!-- End Preloader -->
-		
-		<!-- Get Pro Button -->
-		<ul class="pro-features">
 
-		</ul>
-	
-		<!-- Header Area -->
-		
 		<!-- Breadcrumbs -->
-		<div class="breadcrumbs" overlay style="background-image: url('/bread-bg.jpg');">
-			<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(61, 137, 223, 0.4); z-index: 1;"></div>
+		<div class="breadcrumbs overlay" style="background-image: url('/bread-bg.jpg');">
 			<div class="container">
 				<div class="bread-inner">
-					<div class="row">
-						<div class="col-12">
-							<h2>Laissez un message !</h2>
-							<ul class="bread-list">
-								<li><a href="/home">Accueil</a></li>
-								<li><i class="icofont-simple-right"></i></li>
-								<li class="active">Contactez nous</li>
-							</ul>
-						</div>
-					</div>
+					<h2>Restons en contact</h2>
+					<ul class="bread-list">
+						<li><a href="/home">Accueil</a></li>
+						<li><i class="fas fa-chevron-right" style="font-size: 12px;"></i></li>
+						<li class="active">Contactez-nous</li>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -366,7 +307,7 @@
 		<section class="contact-us section">
 			<div class="container">
 				<div class="inner">
-					<div class="row"> 
+					<div class="row no-gutters"> 
 						<div class="col-lg-6">
 							<div class="contact-us-left">
 								<!--Start Google-map -->
@@ -378,30 +319,36 @@
 						</div>
 						<div class="col-lg-6">
 							<div class="contact-us-form">
-								<h2>Contactez nous</h2>
-								<p>Si vous avez une remarque ou une question , n'hesitez pas de nous informer.</p>
+								<h2>Contactez-nous</h2>
+								<p>Si vous avez une question, une suggestion ou une demande d'information, n'hésitez pas à nous envoyer un message.</p>
+								
 								<!-- Form -->
 								<form id="noteForm" action="#" th:action="@{/saveNote}" th:object="${note}" method="post">
 									<div class="row">
-										<div class="col-lg-6">
-											<div class="form-group">
-												<input type="text" name="nom" id="nom" th:field="*{nom}" placeholder="Nom" required="">
+										<div class="col-lg-6 col-12">
+											<div class="contact-input-field">
+												<input type="text" name="nom" id="nom" th:field="*{nom}" placeholder="Votre Nom et Prénom" required>
+												<i class="fas fa-user"></i>
 											</div>
 										</div>
-										<div class="col-lg-6">
-											<div class="form-group">
-												<input type="text" name="email" id="email" th:field="*{email}" placeholder="Email" >
-											</div>
-										</div>
-
-										<div class="col-lg-12">
-											<div class="form-group">
-												<textarea name="message" id="message" th:field="*{message}"  placeholder="Votre message" required=""></textarea>
+										<div class="col-lg-6 col-12">
+											<div class="contact-input-field">
+												<input type="email" name="email" id="email" th:field="*{email}" placeholder="Votre Adresse Email">
+												<i class="fas fa-envelope"></i>
 											</div>
 										</div>
 										<div class="col-12">
-											<div class="form-group login-btn">
-												<button class="btn" type="submit">Envoyer</button>
+											<div class="contact-input-field">
+												<textarea name="message" id="message" th:field="*{message}" placeholder="Votre message..." required></textarea>
+												<i class="fas fa-comment-alt"></i>
+											</div>
+										</div>
+										<div class="col-12">
+											<div class="submit-btn-wrapper">
+												<button class="btn-submit-contact" type="submit">
+													<span>Envoyer le message</span>
+													<i class="fas fa-paper-plane"></i>
+												</button>
 											</div>
 										</div>
 									</div>
@@ -411,24 +358,25 @@
 						</div>
 					</div>
 				</div>
+
 				<div class="contact-info">
 					<div class="row">
 						<!-- single-info -->
-						<div class="col-lg-4 col-12 ">
-							<div class="single-info">
-								<i class="icofont icofont-ui-call"></i>
-								<div class="content">
-									<h3>+(216)98 288 549</h3>
+						<div class="col-lg-4 col-md-6 col-12 mb-3">
+							<div class="single-info-card">
+								<div class="info-icon-badge"><i class="fas fa-phone-alt"></i></div>
+								<div class="info-card-text">
+									<h3>+(216) 98 288 549</h3>
 									<p>ElectroComfort@gmail.com</p>
 								</div>
 							</div>
 						</div>
 						<!--/End single-info -->
 						<!-- single-info -->
-						<div class="col-lg-4 col-12 ">
-							<div class="single-info">
-								<i class="icofont-google-map"></i>
-								<div class="content">
+						<div class="col-lg-4 col-md-6 col-12 mb-3">
+							<div class="single-info-card">
+								<div class="info-icon-badge"><i class="fas fa-map-marker-alt"></i></div>
+								<div class="info-card-text">
 									<h3>Monastir, Jemmel</h3>
 									<p>Avenue Hedi Nwira</p>
 								</div>
@@ -436,12 +384,12 @@
 						</div>
 						<!--/End single-info -->
 						<!-- single-info -->
-						<div class="col-lg-4 col-12 ">
-							<div class="single-info">
-								<i class="icofont icofont-wall-clock"></i>
-								<div class="content">
-									<h3>Lundi - Samedi : 8am - 7pm</h3>
-									<p>Dimanche ferme</p>
+						<div class="col-lg-4 col-md-6 col-12 mb-3">
+							<div class="single-info-card">
+								<div class="info-icon-badge"><i class="fas fa-clock"></i></div>
+								<div class="info-card-text">
+									<h3>Lundi - Samedi : 8h - 19h</h3>
+									<p>Dimanche : Fermé</p>
 								</div>
 							</div>
 						</div>
@@ -456,61 +404,10 @@
 		
 		<!-- jquery Min JS -->
         <script src="js/jquery.min.js"></script>
-		<!-- jquery Migrate JS -->
-		<script src="js/jquery-migrate-3.0.0.js"></script>
-		<!-- jquery Ui JS -->
-		<script src="js/jquery-ui.min.js"></script>
-		<!-- Easing JS -->
-        <script src="js/easing.js"></script>
-		<!-- Color JS -->
-		<script src="js/colors.js"></script>
-		<!-- Popper JS -->
-		<script src="js/popper.min.js"></script>
-		<!-- Bootstrap Datepicker JS -->
-		<script src="js/bootstrap-datepicker.js"></script>
-		<!-- Jquery Nav JS -->
-        <script src="js/jquery.nav.js"></script>
-		<!-- Slicknav JS -->
-		<script src="js/slicknav.min.js"></script>
-		<!-- ScrollUp JS -->
-        <script src="js/jquery.scrollUp.min.js"></script>
-		<!-- Niceselect JS -->
-		<script src="js/niceselect.js"></script>
-		<!-- Tilt Jquery JS -->
-		<script src="js/tilt.jquery.min.js"></script>
-		<!-- Owl Carousel JS -->
-        <script src="js/owl-carousel.js"></script>
-		<!-- counterup JS -->
-		<script src="js/jquery.counterup.min.js"></script>
-		<!-- Steller JS -->
-		<script src="js/steller.js"></script>
-		<!-- Wow JS -->
-		<script src="js/wow.min.js"></script>
-		<!-- Magnific Popup JS -->
-		<script src="js/jquery.magnific-popup.min.js"></script>
-		<!-- Counter Up CDN JS -->
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-		<!-- Google Map API Key JS -->
-		<script src="https://maps.google.com/maps/api/js?key=AIzaSyDGqTyqoPIvYxhn_Sa7ZrK5bENUWhpCo0w"></script>
-		<!-- Gmaps JS -->
-		<script src="js/gmaps.min.js"></script>
-		<!-- Map Active JS -->
-		<script src="js/map-active.js"></script>
 		<!-- Bootstrap JS -->
 		<script src="js/bootstrap.min.js"></script>
 		<!-- Main JS -->
 		<script src="js/main.js"></script>
 		<script src="/assets/js/header.js"></script>
-		<script>
-		   document.getElementById("noteForm").addEventListener("submit", function(event){
-		       event.preventDefault(); // Prevent default form submission
-		       
-		       // Show alert message
-		       alert("Votre message a été envoyé avec succès !");
-		       
-		       // Optionally, submit the form after the alert
-		       this.submit();
-		   });
-		</script>
     </body>
 </html>

@@ -30,7 +30,7 @@ public class ClientController {
     @PostMapping("/saveClient")
     public String saveClient(Client client) {
         clientRepository.save(client);
-        return "redirect:/ListClients";
+        return "redirect:/ListClients?msg=saved_client";
     }
 
     @GetMapping("/ListClients")
@@ -51,8 +51,12 @@ public class ClientController {
 
     @GetMapping(path = "/deleteClient")
     public String delete (Long id) {
-    clientRepository.deleteById(id);
-    return "redirect:/ListClients";
+        try {
+            clientRepository.deleteById(id);
+            return "redirect:/ListClients?msg=deleted_client";
+        } catch (Exception e) {
+            return "redirect:/ListClients?error=Impossible+de+supprimer+ce+client+car+il+est+lie+a+des+ventes+existantes+!";
+        }
     }
     @GetMapping("/editClient")
     public String editClient(Model model, Long id) {

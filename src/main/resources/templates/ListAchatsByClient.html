@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="/assets/css/admin-header.css">
     <style>
 	    body{
-	    background: url('img2.png') no-repeat;
-	    background-size: cover; /* Ensure the image covers the entire body */
-	    background-repeat: no-repeat; /* Prevent the image from repeating */
-	    background-position: center;
-	    padding-top: 74px; /* clear the fixed admin header */
+	        background-image: url('/img/fr.png');
+	        background-size: cover;
+	        background-repeat: no-repeat;
+	        background-position: center;
+	        background-attachment: fixed;
+	        padding-top: 74px;
 	    }
 	    *{
             font-family: "Poppins", sans-serif;
@@ -143,20 +144,24 @@
                     <tbody>
                         <tr th:each="achat : ${ListAchats}">
                             <td th:text="${achat.id}"></td>
-                            <td th:text="${achat.article.name}"></td>
-                            <td th:text="${#dates.format(achat.dateAchat, 'dd-MM-yyyy')}"></td>
+                            <td th:text="${achat.article != null ? achat.article.name : '-'}"></td>
+                            <td th:text="${achat.dateAchat != null ? #dates.format(achat.dateAchat, 'dd-MM-yyyy') : '-'}"></td>
                             <td th:text="${achat.quantite}"></td>
-                            <td th:text="${achat.montant}"></td>
+                            <td><b th:text="${achat.montant != null ? #numbers.formatDecimal(achat.montant, 1, 2) + ' TND' : '-'}"></b></td>
                             <td>
                                 <span class="badge badge-payment" 
                                       th:classappend="${achat.modePayment == 'comptant'} ? 'badge-comptant' : 'badge-facilite'"
-                                      th:text="${achat.modePayment == 'comptant'} ? 'Comptant' : 'Facilite'"></span>
+                                      th:text="${achat.modePayment == 'comptant'} ? 'Comptant' : 'Facilité'"></span>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 </div>
-                <nav>
+                <div class="text-center py-4 text-muted" th:if="${ListAchats == null || ListAchats.isEmpty()}">
+                    <i class="fas fa-shopping-bag fa-3x mb-3" style="color: #cbd5e1;"></i>
+                    <p class="mb-0">Aucun achat trouvé pour ce client.</p>
+                </div>
+                <nav th:if="${pages != null && pages.length > 1}">
                     <ul class="pagination">
                         <li th:each="page, status : ${pages}" class="page-item" th:classappend="${status.index == currentpage ? ' active' : ''}">
                             <a class="page-link" th:href="@{/listAchatsByClient(clientId=${client.id}, page=${status.index})}" th:text="${status.index + 1}"></a>

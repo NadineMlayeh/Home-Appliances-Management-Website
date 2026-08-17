@@ -8,11 +8,12 @@
         <link rel="stylesheet" href="/assets/css/admin-header.css">
     <style>
 	    body{
-	    background: url('bb.png') no-repeat;
-	        background-size: cover; /* Ensure the image covers the entire body */
-	    background-repeat: no-repeat; /* Prevent the image from repeating */
-	    background-position: center;
-	    padding-top: 74px; /* clear the fixed admin header */
+	        background-image: url('/img/fr.png');
+	        background-size: cover;
+	        background-repeat: no-repeat;
+	        background-position: center;
+	        background-attachment: fixed;
+	        padding-top: 74px;
 	    }
         *{
 
@@ -174,11 +175,11 @@
                             <td th:text="${c.id}"></td>
                             <td th:text="${c.nom}"></td>
                             <td th:text="${c.prenom}"></td>
-                            <td th:text="${c.dateNaissance}"></td>
+                            <td th:text="${c.dateNaissance != null ? #dates.format(c.dateNaissance, 'dd-MM-yyyy') : '-'}"></td>
                             <td th:text="${c.adresse}"></td>
                             <td th:text="${c.numTelephone}"></td>
                             <td>
-                                <a onclick="return confirm('Etes-vous sur de vouloir supprimer ce client ?')" class="btn btn-danger btn-sm" th:href="@{/deleteClient(id=${c.id})}"><i class="fas fa-trash-alt"></i> Effacer</a>
+                                <a data-confirm="Etes-vous sur de vouloir supprimer ce client ?" class="btn btn-danger btn-sm" th:href="@{/deleteClient(id=${c.id})}"><i class="fas fa-trash-alt"></i> Effacer</a>
                             </td>
                             <td>
                                 <a class="btn btn-warning btn-sm" th:href="@{/editClient(id=${c.id})}"><i class="fas fa-pen"></i> Modifier</a>
@@ -189,7 +190,11 @@
                         </tr>
                     </tbody>
                 </table>
-                <nav>
+                <div class="text-center py-4 text-muted" th:if="${ListClients == null || ListClients.isEmpty()}">
+                    <i class="fas fa-users-slash fa-3x mb-3" style="color: #cbd5e1;"></i>
+                    <p class="mb-0">Aucun client trouvé.</p>
+                </div>
+                <nav th:if="${pages != null && pages.length > 1}">
                     <ul class="pagination justify-content-center mt-4">
                         <li th:each="page, status : ${pages}" class="page-item" th:classappend="${status.index == currentpage ? ' active' : ''}">
                             <a class="page-link" th:href="@{/ListClients(page=${status.index}, keyword=${keyword})}" th:text="${status.index + 1}"></a>
